@@ -18,7 +18,7 @@ public class XuLyNguoiDung
         SqlParameter[] sqlParams = { };
         return dl.Select("SELECT * FROM Account WHERE Type = 1", sqlParams);
     }
-    public DataTable GetNguoiDung(int id)
+    public DataTable GetNguoiDung(string id)
     {
         SqlParameter idnd = new SqlParameter("@UserName", id);
         SqlParameter[] sqlParams = { idnd };
@@ -38,13 +38,25 @@ public class XuLyNguoiDung
         SqlParameter[] sqlParams = { tdn, mk };
         return dl.Select("SELECT * FROM Account WHERE UserName = @UserName AND Password =@Password AND Type=1 ", sqlParams);
     }
-    public int SuaNguoiDung(int id)
+    public int ThemNguoiDung(NguoiDung obj)
     {
-        SqlParameter idnd = new SqlParameter("@UserName", id);
-        SqlParameter[] sqlParams = { idnd };
-        return dl.SaveChanges("DELETE FROM Account WHERE UserName = @UserName", sqlParams);
+        SqlParameter mcm = new SqlParameter("@UserName", obj.TenDangNhap);
+        SqlParameter tcm = new SqlParameter("@PassWord", obj.MatKhau);
+        SqlParameter tht = new SqlParameter("@DisplayName", obj.HoTen);
+        SqlParameter type = new SqlParameter("@Type", obj.Type);
+        SqlParameter[] sqlParams = { mcm, tcm,tht,type };
+        return dl.SaveChanges("INSERT INTO [dbo].[Account]([UserName],[PassWord],[DisplayName],[Type]) VALUES(@UserName,@PassWord,@DisplayName,@Type)", sqlParams);
     }
-    public int XoaNguoiDung(int id)
+    public int SuaNguoiDung(NguoiDung obj)
+    {
+        SqlParameter mcm = new SqlParameter("@UserName", obj.TenDangNhap);
+        SqlParameter tcm = new SqlParameter("@PassWord", obj.MatKhau);
+        SqlParameter tht = new SqlParameter("@DisplayName", obj.HoTen);
+        SqlParameter type = new SqlParameter("@Type", obj.Type);
+        SqlParameter[] sqlParams = { mcm, tcm, tht, type };
+        return dl.SaveChanges("UPDATE Account SET UserName = @UserName,PassWord = @PassWord, DisplayName = @DisplayName,Type = @Type WHERE UserName = @UserName", sqlParams);
+    }
+    public int XoaNguoiDung(string id)
     {
         SqlParameter idnd = new SqlParameter("@UserName", id);
         SqlParameter[] sqlParams = { idnd };
