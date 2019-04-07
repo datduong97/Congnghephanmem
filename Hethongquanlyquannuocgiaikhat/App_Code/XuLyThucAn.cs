@@ -36,7 +36,7 @@ public class XuLyChuyenMuc
         SqlParameter mcm = new SqlParameter("@idCategoryFood", obj.MaChuyenMuc);
         SqlParameter tcm = new SqlParameter("@Name", obj.TenChuyenMuc);                
         SqlParameter[] sqlParams = { mcm, tcm};
-        return dl.SaveChanges("UPDATE FoodCategory SET Name = @Name,idCategoryFood = @idCategoryFood", sqlParams);
+        return dl.SaveChanges("UPDATE FoodCategory SET Name = @Name WHERE idCategoryFood = @idCategoryFood", sqlParams);
     }
     public int XoaChuyenMuc(int maChuyenMuc)
     {

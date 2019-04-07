@@ -9,7 +9,7 @@ public class NguoiDung
     public string TenDangNhap { get; set; }
     public string MatKhau { get; set; }
     public string HoTen { get; set; }       
-    public int TrangThai { get; set; }
+    public int Type { get; set; }
     public NguoiDung()
     {
 
@@ -25,11 +25,11 @@ public class NguoiDung
         MatKhau = matKhau;
         HoTen = hoTen;                
     }
-    public NguoiDung(string tenDangNhap, string matKhau, string hoTen, int trangThai)
+    public NguoiDung(string tenDangNhap, string matKhau, string hoTen, int type)
     {        
         TenDangNhap = tenDangNhap;
         MatKhau = matKhau;
         HoTen = hoTen;      
-        TrangThai = trangThai;
+        Type = type;
     }
 }
