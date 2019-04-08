@@ -6,9 +6,9 @@
 </head>
 <body>
     <div class="container">
-        <div class="item"><a href="./thucdon/menu.html"><p class="title">THỰC ĐƠN</p></a></div>
+        <div class="item"><a href="./Views/menu.aspx"><p class="title">THỰC ĐƠN</p></a></div>
+        <div class="item" ><a href="./Views/about.aspx"><p class="title">GIỚI THIỆU</p></a></div>
         <div class="item"><p class="title">ĐẶT BÀN</p></div>
-        <div class="item"><p class="title">GIỚI THIỆU</p></div>
     </div>
 
 </body>
