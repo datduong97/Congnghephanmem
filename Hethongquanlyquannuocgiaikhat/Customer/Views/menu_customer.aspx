@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="menu_customer.aspx.cs" Inherits="Customer_Views_menu_customer" %>
+
+<!DOCTYPE html>
 <html>
 <head>
   <title>Thực đơn</title>
@@ -93,3 +95,4 @@
 
 </body>
 </html>
+
