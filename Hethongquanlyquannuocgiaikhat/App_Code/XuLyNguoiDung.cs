@@ -8,6 +8,12 @@ using System.Text;
 public class XuLyNguoiDung
 {
     DuLieu dl = new DuLieu();
+    public NguoiDung dl1;
+    QLQNuocGiaiKhatDataContext ql;
+    public XuLyNguoiDung()
+    {
+        ql = new QLQNuocGiaiKhatDataContext();
+    }
     public DataTable ListNguoiDung()
     {
         SqlParameter[] sqlParams = { };
@@ -61,5 +67,19 @@ public class XuLyNguoiDung
         SqlParameter idnd = new SqlParameter("@UserName", id);
         SqlParameter[] sqlParams = { idnd };
         return dl.SaveChanges("DELETE FROM Account WHERE UserName = @UserName", sqlParams);
+    }
+    public bool checkAccount(string user, string pass)
+    {
+
+        var sql = from item in ql.Accounts
+                  where item.Username == user && item.Password == pass
+                  select item;
+        if (sql.Count()>0)
+        {
+            Account ac = sql.First();
+            dl1 = new NguoiDung(ac.Username, ac.Password, ac.DisplayName, ac.Type);
+            return true;
+        }
+        return false;
     }
 }
