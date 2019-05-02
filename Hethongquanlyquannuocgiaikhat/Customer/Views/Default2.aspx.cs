@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Customer_Views_menu_customer : System.Web.UI.Page
+public partial class Customer_Views_Default2 : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
