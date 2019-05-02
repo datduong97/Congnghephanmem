@@ -32,28 +32,17 @@ public partial class Admin_Views_Login : System.Web.UI.Page
             else
             {
                 XuLyNguoiDung xl = new XuLyNguoiDung();
-                //NguoiDung obj = new NguoiDung(txtTenDangNhap.Text, txtMatKhau.Text);
-                //DataTable dt = new DataTable();
-                //dt = xl.CheckDangNhapAdmin(obj);
-                //if (dt.Rows.Count <= 0)
-                //{
-                //    lblError.Text = "Tên đăng nhập hoặc mật khẩu không đúng";
-                //}
-                //else
-                //{
-                //    Session["UserName"] = dt.Rows[0]["UserName"].ToString();
-                //    Session["DisplayName"] = dt.Rows[0]["DisplayName"].ToString();
-                //    Response.Redirect("Default.aspx");
-                ////}
-                if (xl.checkAccount(txtTenDangNhap.Text, txtMatKhau.Text) == false)
+                NguoiDung obj = new NguoiDung(txtTenDangNhap.Text, txtMatKhau.Text);
+                DataTable dt = new DataTable();
+                dt = xl.CheckDangNhapAdmin(obj);
+                if (dt.Rows.Count <= 0)
                 {
-                    lblError.Text = "Tên đăng nhập hoặc mật khẩu không đúng. Vui lòng đăng nhập lại!";
+                    lblError.Text = "Tên đăng nhập hoặc mật khẩu không đúng";
                 }
                 else
                 {
-                    NguoiDung nl = xl.dl1;
-                    Session["UserName"] = txtTenDangNhap.Text;
-                    Session["DisplayName"] = nl.HoTen;
+                    Session["UserName"] = dt.Rows[0]["UserName"].ToString();
+                    Session["DisplayName"] = dt.Rows[0]["DisplayName"].ToString();
                     Response.Redirect("Default.aspx");
                 }
             }
