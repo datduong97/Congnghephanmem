@@ -79,7 +79,7 @@ namespace Web.Customer
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Table}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

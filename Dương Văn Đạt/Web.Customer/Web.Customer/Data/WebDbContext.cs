@@ -37,6 +37,10 @@ namespace Web.Customer.Data
             {
                 model.ToTable("Drink", "dbo");
             });
+            modelBuilder.Entity<BookedTable>(model =>
+            {
+                model.ToTable("BookedTable", "dbo");
+            });
         }
     }
 }

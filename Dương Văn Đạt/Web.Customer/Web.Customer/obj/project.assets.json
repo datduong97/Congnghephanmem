@@ -11802,11 +11802,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\CNPM\\Project\\Web.Customer\\Web.Customer\\Web.Customer.csproj",
+      "projectUniqueName": "D:\\CNPM\\Congnghephanmem\\Dương Văn Đạt\\Web.Customer\\Web.Customer\\Web.Customer.csproj",
       "projectName": "Web.Customer",
-      "projectPath": "D:\\CNPM\\Project\\Web.Customer\\Web.Customer\\Web.Customer.csproj",
+      "projectPath": "D:\\CNPM\\Congnghephanmem\\Dương Văn Đạt\\Web.Customer\\Web.Customer\\Web.Customer.csproj",
       "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "D:\\CNPM\\Project\\Web.Customer\\Web.Customer\\obj\\",
+      "outputPath": "D:\\CNPM\\Congnghephanmem\\Dương Văn Đạt\\Web.Customer\\Web.Customer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
