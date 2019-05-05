@@ -1,0 +1,51 @@
+﻿@model BookedTableEditViewModel
+@using Web.Customer.Data
+@{
+    ViewData["Title"] = "IndexAsync";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Đặt bàn</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        .itemBtn {
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1>Chào mừng đến với cửa hàng DrinkFood !</h1>
+        </div>
+        <div class="row">
+            @using (Html.BeginForm())
+            {
+ 
+                @Html.DropDownListFor(m => m.idTable,
+                    new SelectList(ViewBag.table, "idTable", "name"))
+                <p>Họ và tên:</p> @Html.TextBoxFor(s => s.CustomerName)
+                <p>Địa chỉ:</p> @Html.TextBoxFor(s => s.CustomerAddress)
+                <p>Số điện thoại:</p> @Html.TextBoxFor(s => s.CustomerPhone)
+                <p>Ngày đặt:</p> @Html.TextBoxFor(s => s.BookDate)
+                <p>Giờ bắt đầu:</p> @Html.TextBoxFor(s => s.BookTimeStart)
+                <p>Giờ dự kiến kết thúc:</p> @Html.TextBoxFor(s => s.BookTimeEnd)
+                <input type="submit" value="Ok" />
+
+            }
+
+        </div>
+    </div>
+</body>
+</html>
+
+
+
