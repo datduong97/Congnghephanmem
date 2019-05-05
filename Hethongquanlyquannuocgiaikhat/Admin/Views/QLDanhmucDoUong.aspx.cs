@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Admin_Views_QLThucDonNuocUong : System.Web.UI.Page
+public partial class Admin_Views_QLDanhmucDoUong : System.Web.UI.Page
 {
     QLQuanNuocDataContext qlqn;
     private static bool mode;
@@ -13,7 +13,7 @@ public partial class Admin_Views_QLThucDonNuocUong : System.Web.UI.Page
     public void display()
     {
         qlqn = new QLQuanNuocDataContext();
-        var qlb = from item in qlqn.Drinks
+        var qlb = from item in qlqn.DrinkCategories
                   select item;
         gvChuyenMuc.DataSource = qlb;
         gvChuyenMuc.DataBind();
@@ -21,24 +21,15 @@ public partial class Admin_Views_QLThucDonNuocUong : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        qlqn = new QLQuanNuocDataContext();
-        var ds = from item in qlqn.DrinkCategories
-                 select item;
-        DropListMaLoai.DataSource = ds;
-        DropListMaLoai.DataValueField = "idCategoryDrink";
-        DropListMaLoai.DataTextField = "name";
-        DropListMaLoai.DataBind();
         display();
     }
-    
     protected void btnNew_Click(object sender, EventArgs e)
     {
         mode = true;
+        txtMaChuyenMuc.Enabled = true;
         txtTenChuyenMuc.Enabled = true;
-        DropListMaLoai.Enabled = true;
-        TxtGia.Enabled = true;
-        txtTenChuyenMuc.Text = "";
-        TxtGia.Text = "";
+        txtMaChuyenMuc.Text = "";
+        txtTenChuyenMuc.Text = "";    
     }
     protected void btnSaveChanges_Click(object sender, EventArgs e)
     {
@@ -46,63 +37,55 @@ public partial class Admin_Views_QLThucDonNuocUong : System.Web.UI.Page
         qlqn = new QLQuanNuocDataContext();
         if (mode == true)
         {
-            Drink fc = new Drink();
+            DrinkCategory fc = new DrinkCategory();
+            fc.idCategoryDrink = Convert.ToInt32(txtMaChuyenMuc.Text);
             fc.name = txtTenChuyenMuc.Text;
-            fc.idCategoryDrink = Convert.ToInt32(DropListMaLoai.SelectedValue.ToString());
-            fc.price = Convert.ToDouble(TxtGia.Text);
-            qlqn.Drinks.InsertOnSubmit(fc);
+            qlqn.DrinkCategories.InsertOnSubmit(fc);
             qlqn.SubmitChanges();
             lblError.Text = "Thêm thành công !";
+            txtMaChuyenMuc.Enabled = false;
             txtTenChuyenMuc.Enabled = false;
-            DropListMaLoai.Enabled = false;
-            TxtGia.Enabled = false;
             display();
         }
         else
         {
-            var qlb = from item in qlqn.Drinks
-                      where item.idDrink == Convert.ToInt32(txtMaChuyenMuc.Text)
+            var qlb = from item in qlqn.DrinkCategories
+                      where item.idCategoryDrink == Convert.ToInt32(txtMaChuyenMuc.Text)
                       select item;
-            Drink fc = qlb.First();
+            DrinkCategory fc = qlb.First();
             fc.name = txtTenChuyenMuc.Text;
-            fc.idCategoryDrink = Convert.ToInt32(DropListMaLoai.SelectedValue.ToString());
-            fc.price = Convert.ToDouble(TxtGia.Text);
             qlqn.SubmitChanges();
             lblError.Text = "Sửa thành công !";
+            txtMaChuyenMuc.Enabled = false;
             txtTenChuyenMuc.Enabled = false;
-            DropListMaLoai.Enabled = false;
-            TxtGia.Enabled = false;
             display();
         }   
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-          Response.Redirect("QLThucDonNuocUong.aspx");    
+        Response.Redirect("QLDanhmucDoUong.aspx");
     }
     protected void gvChuyenMuc_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         int row = Convert.ToInt32(e.CommandArgument);
         if (e.CommandName == "btnSua")
-        {            
+        {
+            txtMaChuyenMuc.Enabled = false;
             txtTenChuyenMuc.Enabled = true;
-            DropListMaLoai.Enabled = true;
-            TxtGia.Enabled = true;
             txtMaChuyenMuc.Text = gvChuyenMuc.Rows[row].Cells[0].Text;
             txtTenChuyenMuc.Text = gvChuyenMuc.Rows[row].Cells[1].Text;
-            DropListMaLoai.SelectedValue = gvChuyenMuc.Rows[row].Cells[2].Text;
-            TxtGia.Text = gvChuyenMuc.Rows[row].Cells[3].Text;
         }
         else if (e.CommandName == "btnXoa")
         {
             string s = gvChuyenMuc.Rows[row].Cells[0].Text;
             qlqn = new QLQuanNuocDataContext();
-            var qlb = from item in qlqn.Drinks
-                      where item.idDrink == Convert.ToInt32(s)
+            var qlb = from item in qlqn.DrinkCategories
+                      where item.idCategoryDrink == Convert.ToInt32(s)
                       select item;
-            Drink fc = qlb.First();
+            DrinkCategory fc = qlb.First();
             if (qlb != null)
             {
-                qlqn.Drinks.DeleteOnSubmit(fc);
+                qlqn.DrinkCategories.DeleteOnSubmit(fc);
                 qlqn.SubmitChanges();
                 lblError.Text = "Xóa thành công !";
                 display();
