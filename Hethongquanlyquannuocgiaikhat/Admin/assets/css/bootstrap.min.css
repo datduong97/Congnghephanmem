@@ -121,6 +121,8 @@ button, select {
 button, html input[type=button], input[type=reset], input[type=submit] {
     -webkit-appearance: button;
     cursor: pointer;
+    top: 1px;
+    left: 0px;
 }
 
     button[disabled], html input[disabled] {

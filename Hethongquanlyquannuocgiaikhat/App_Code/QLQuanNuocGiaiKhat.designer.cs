@@ -22,7 +22,7 @@ using System.Reflection;
 
 
 [global::System.Data.Linq.Mapping.DatabaseAttribute(Name="CNPM_QLNGK")]
-public partial class QLQNuocGiaiKhatDataContext : System.Data.Linq.DataContext
+public partial class QLQuanNuocGiaiKhatDataContext : System.Data.Linq.DataContext
 {
 	
 	private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -32,9 +32,9 @@ public partial class QLQNuocGiaiKhatDataContext : System.Data.Linq.DataContext
   partial void InsertAccount(Account instance);
   partial void UpdateAccount(Account instance);
   partial void DeleteAccount(Account instance);
-  partial void InsertTableFood(TableFood instance);
-  partial void UpdateTableFood(TableFood instance);
-  partial void DeleteTableFood(TableFood instance);
+  partial void InsertTable(Table instance);
+  partial void UpdateTable(Table instance);
+  partial void DeleteTable(Table instance);
   partial void InsertBill(Bill instance);
   partial void UpdateBill(Bill instance);
   partial void DeleteBill(Bill instance);
@@ -61,31 +61,31 @@ public partial class QLQNuocGiaiKhatDataContext : System.Data.Linq.DataContext
   partial void DeleteFoodCategory(FoodCategory instance);
   #endregion
 	
-	public QLQNuocGiaiKhatDataContext() : 
+	public QLQuanNuocGiaiKhatDataContext() : 
 			base(global::System.Configuration.ConfigurationManager.ConnectionStrings["CNPM_QLNGKConnectionString1"].ConnectionString, mappingSource)
 	{
 		OnCreated();
 	}
 	
-	public QLQNuocGiaiKhatDataContext(string connection) : 
+	public QLQuanNuocGiaiKhatDataContext(string connection) : 
 			base(connection, mappingSource)
 	{
 		OnCreated();
 	}
 	
-	public QLQNuocGiaiKhatDataContext(System.Data.IDbConnection connection) : 
+	public QLQuanNuocGiaiKhatDataContext(System.Data.IDbConnection connection) : 
 			base(connection, mappingSource)
 	{
 		OnCreated();
 	}
 	
-	public QLQNuocGiaiKhatDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+	public QLQuanNuocGiaiKhatDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 			base(connection, mappingSource)
 	{
 		OnCreated();
 	}
 	
-	public QLQNuocGiaiKhatDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+	public QLQuanNuocGiaiKhatDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 			base(connection, mappingSource)
 	{
 		OnCreated();
@@ -99,11 +99,11 @@ public partial class QLQNuocGiaiKhatDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
-	public System.Data.Linq.Table<TableFood> TableFoods
+	public System.Data.Linq.Table<Table> Tables
 	{
 		get
 		{
-			return this.GetTable<TableFood>();
+			return this.GetTable<Table>();
 		}
 	}
 	
@@ -306,8 +306,8 @@ public partial class Account : INotifyPropertyChanging, INotifyPropertyChanged
 	}
 }
 
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TableFood")]
-public partial class TableFood : INotifyPropertyChanging, INotifyPropertyChanged
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Table]")]
+public partial class Table : INotifyPropertyChanging, INotifyPropertyChanged
 {
 	
 	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -316,11 +316,7 @@ public partial class TableFood : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private string _name;
 	
-	private string _status;
-	
-	private EntitySet<Bill> _Bills;
-	
-	private EntityRef<BookedTable> _BookedTable;
+	private bool _status;
 	
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -330,14 +326,12 @@ public partial class TableFood : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnidTableChanged();
     partial void OnnameChanging(string value);
     partial void OnnameChanged();
-    partial void OnstatusChanging(string value);
+    partial void OnstatusChanging(bool value);
     partial void OnstatusChanged();
     #endregion
 	
-	public TableFood()
+	public Table()
 	{
-		this._Bills = new EntitySet<Bill>(new Action<Bill>(this.attach_Bills), new Action<Bill>(this.detach_Bills));
-		this._BookedTable = default(EntityRef<BookedTable>);
 		OnCreated();
 	}
 	
@@ -352,10 +346,6 @@ public partial class TableFood : INotifyPropertyChanging, INotifyPropertyChanged
 		{
 			if ((this._idTable != value))
 			{
-				if (this._BookedTable.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
 				this.OnidTableChanging(value);
 				this.SendPropertyChanging();
 				this._idTable = value;
@@ -385,8 +375,8 @@ public partial class TableFood : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-	public string status
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="Bit NOT NULL")]
+	public bool status
 	{
 		get
 		{
@@ -401,53 +391,6 @@ public partial class TableFood : INotifyPropertyChanging, INotifyPropertyChanged
 				this._status = value;
 				this.SendPropertyChanged("status");
 				this.OnstatusChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TableFood_Bill", Storage="_Bills", ThisKey="idTable", OtherKey="idTable")]
-	public EntitySet<Bill> Bills
-	{
-		get
-		{
-			return this._Bills;
-		}
-		set
-		{
-			this._Bills.Assign(value);
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BookedTable_TableFood", Storage="_BookedTable", ThisKey="idTable", OtherKey="idTable", IsForeignKey=true)]
-	public BookedTable BookedTable
-	{
-		get
-		{
-			return this._BookedTable.Entity;
-		}
-		set
-		{
-			BookedTable previousValue = this._BookedTable.Entity;
-			if (((previousValue != value) 
-						|| (this._BookedTable.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._BookedTable.Entity = null;
-					previousValue.TableFood = null;
-				}
-				this._BookedTable.Entity = value;
-				if ((value != null))
-				{
-					value.TableFood = this;
-					this._idTable = value.idTable;
-				}
-				else
-				{
-					this._idTable = default(int);
-				}
-				this.SendPropertyChanged("BookedTable");
 			}
 		}
 	}
@@ -471,18 +414,6 @@ public partial class TableFood : INotifyPropertyChanging, INotifyPropertyChanged
 			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
-	
-	private void attach_Bills(Bill entity)
-	{
-		this.SendPropertyChanging();
-		entity.TableFood = this;
-	}
-	
-	private void detach_Bills(Bill entity)
-	{
-		this.SendPropertyChanging();
-		entity.TableFood = null;
-	}
 }
 
 [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Bill")]
@@ -504,8 +435,6 @@ public partial class Bill : INotifyPropertyChanging, INotifyPropertyChanged
 	private System.Nullable<int> _discount;
 	
 	private System.Nullable<double> _totalPrice;
-	
-	private EntityRef<TableFood> _TableFood;
 	
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -529,7 +458,6 @@ public partial class Bill : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	public Bill()
 	{
-		this._TableFood = default(EntityRef<TableFood>);
 		OnCreated();
 	}
 	
@@ -604,10 +532,6 @@ public partial class Bill : INotifyPropertyChanging, INotifyPropertyChanged
 		{
 			if ((this._idTable != value))
 			{
-				if (this._TableFood.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
 				this.OnidTableChanging(value);
 				this.SendPropertyChanging();
 				this._idTable = value;
@@ -673,40 +597,6 @@ public partial class Bill : INotifyPropertyChanging, INotifyPropertyChanged
 				this._totalPrice = value;
 				this.SendPropertyChanged("totalPrice");
 				this.OntotalPriceChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TableFood_Bill", Storage="_TableFood", ThisKey="idTable", OtherKey="idTable", IsForeignKey=true)]
-	public TableFood TableFood
-	{
-		get
-		{
-			return this._TableFood.Entity;
-		}
-		set
-		{
-			TableFood previousValue = this._TableFood.Entity;
-			if (((previousValue != value) 
-						|| (this._TableFood.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._TableFood.Entity = null;
-					previousValue.Bills.Remove(this);
-				}
-				this._TableFood.Entity = value;
-				if ((value != null))
-				{
-					value.Bills.Add(this);
-					this._idTable = value.idTable;
-				}
-				else
-				{
-					this._idTable = default(int);
-				}
-				this.SendPropertyChanged("TableFood");
 			}
 		}
 	}
@@ -1051,7 +941,11 @@ public partial class BookedTable : INotifyPropertyChanging, INotifyPropertyChang
 	
 	private string _CustomerAddress;
 	
-	private EntityRef<TableFood> _TableFood;
+	private string _BookDate;
+	
+	private string _BookTimeStart;
+	
+	private string _BookTimeEnd;
 	
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1065,11 +959,16 @@ public partial class BookedTable : INotifyPropertyChanging, INotifyPropertyChang
     partial void OnCustomerPhoneChanged();
     partial void OnCustomerAddressChanging(string value);
     partial void OnCustomerAddressChanged();
+    partial void OnBookDateChanging(string value);
+    partial void OnBookDateChanged();
+    partial void OnBookTimeStartChanging(string value);
+    partial void OnBookTimeStartChanged();
+    partial void OnBookTimeEndChanging(string value);
+    partial void OnBookTimeEndChanged();
     #endregion
 	
 	public BookedTable()
 	{
-		this._TableFood = default(EntityRef<TableFood>);
 		OnCreated();
 	}
 	
@@ -1153,31 +1052,62 @@ public partial class BookedTable : INotifyPropertyChanging, INotifyPropertyChang
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BookedTable_TableFood", Storage="_TableFood", ThisKey="idTable", OtherKey="idTable", IsUnique=true, IsForeignKey=false)]
-	public TableFood TableFood
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookDate", DbType="NChar(10)")]
+	public string BookDate
 	{
 		get
 		{
-			return this._TableFood.Entity;
+			return this._BookDate;
 		}
 		set
 		{
-			TableFood previousValue = this._TableFood.Entity;
-			if (((previousValue != value) 
-						|| (this._TableFood.HasLoadedOrAssignedValue == false)))
+			if ((this._BookDate != value))
 			{
+				this.OnBookDateChanging(value);
 				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._TableFood.Entity = null;
-					previousValue.BookedTable = null;
-				}
-				this._TableFood.Entity = value;
-				if ((value != null))
-				{
-					value.BookedTable = this;
-				}
-				this.SendPropertyChanged("TableFood");
+				this._BookDate = value;
+				this.SendPropertyChanged("BookDate");
+				this.OnBookDateChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookTimeStart", DbType="Char(10)")]
+	public string BookTimeStart
+	{
+		get
+		{
+			return this._BookTimeStart;
+		}
+		set
+		{
+			if ((this._BookTimeStart != value))
+			{
+				this.OnBookTimeStartChanging(value);
+				this.SendPropertyChanging();
+				this._BookTimeStart = value;
+				this.SendPropertyChanged("BookTimeStart");
+				this.OnBookTimeStartChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookTimeEnd", DbType="Char(10)")]
+	public string BookTimeEnd
+	{
+		get
+		{
+			return this._BookTimeEnd;
+		}
+		set
+		{
+			if ((this._BookTimeEnd != value))
+			{
+				this.OnBookTimeEndChanging(value);
+				this.SendPropertyChanging();
+				this._BookTimeEnd = value;
+				this.SendPropertyChanged("BookTimeEnd");
+				this.OnBookTimeEndChanged();
 			}
 		}
 	}
@@ -1215,7 +1145,9 @@ public partial class Drink : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private int _idCategoryDrink;
 	
-	private double _price;
+	private int _price;
+	
+	private string _image;
 	
 	private EntitySet<BillInfo> _BillInfos;
 	
@@ -1231,8 +1163,10 @@ public partial class Drink : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnnameChanged();
     partial void OnidCategoryDrinkChanging(int value);
     partial void OnidCategoryDrinkChanged();
-    partial void OnpriceChanging(double value);
+    partial void OnpriceChanging(int value);
     partial void OnpriceChanged();
+    partial void OnimageChanging(string value);
+    partial void OnimageChanged();
     #endregion
 	
 	public Drink()
@@ -1306,8 +1240,8 @@ public partial class Drink : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Float NOT NULL")]
-	public double price
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Int NOT NULL")]
+	public int price
 	{
 		get
 		{
@@ -1322,6 +1256,26 @@ public partial class Drink : INotifyPropertyChanging, INotifyPropertyChanged
 				this._price = value;
 				this.SendPropertyChanged("price");
 				this.OnpriceChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image", DbType="NVarChar(50)")]
+	public string image
+	{
+		get
+		{
+			return this._image;
+		}
+		set
+		{
+			if ((this._image != value))
+			{
+				this.OnimageChanging(value);
+				this.SendPropertyChanging();
+				this._image = value;
+				this.SendPropertyChanged("image");
+				this.OnimageChanged();
 			}
 		}
 	}
@@ -1694,7 +1648,9 @@ public partial class Food : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private int _idCategoryFood;
 	
-	private double _price;
+	private int _price;
+	
+	private string _image;
 	
 	private EntitySet<BillInfo> _BillInfos;
 	
@@ -1710,8 +1666,10 @@ public partial class Food : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnnameChanged();
     partial void OnidCategoryFoodChanging(int value);
     partial void OnidCategoryFoodChanged();
-    partial void OnpriceChanging(double value);
+    partial void OnpriceChanging(int value);
     partial void OnpriceChanged();
+    partial void OnimageChanging(string value);
+    partial void OnimageChanged();
     #endregion
 	
 	public Food()
@@ -1785,8 +1743,8 @@ public partial class Food : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Float NOT NULL")]
-	public double price
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Int NOT NULL")]
+	public int price
 	{
 		get
 		{
@@ -1801,6 +1759,26 @@ public partial class Food : INotifyPropertyChanging, INotifyPropertyChanged
 				this._price = value;
 				this.SendPropertyChanged("price");
 				this.OnpriceChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image", DbType="NVarChar(50)")]
+	public string image
+	{
+		get
+		{
+			return this._image;
+		}
+		set
+		{
+			if ((this._image != value))
+			{
+				this.OnimageChanging(value);
+				this.SendPropertyChanging();
+				this._image = value;
+				this.SendPropertyChanged("image");
+				this.OnimageChanged();
 			}
 		}
 	}
