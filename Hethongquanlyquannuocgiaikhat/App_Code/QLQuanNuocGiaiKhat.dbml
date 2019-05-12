@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CNPM_QLNGK" Class="QLQNuocGiaiKhatDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CNPM_QLNGK" Class="QLQuanNuocGiaiKhatDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=ANHDUC\SQLEXPRESS;Initial Catalog=CNPM_QLNGK;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="CNPM_QLNGKConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Account" Member="Accounts">
     <Type Name="Account">
@@ -8,13 +8,11 @@
       <Column Name="Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.TableFood" Member="TableFoods">
-    <Type Name="TableFood">
+  <Table Name="dbo.[Table]" Member="Tables">
+    <Type Name="Table">
       <Column Name="idTable" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="status" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Association Name="TableFood_Bill" Member="Bills" ThisKey="idTable" OtherKey="idTable" Type="Bill" />
-      <Association Name="BookedTable_TableFood" Member="BookedTable" ThisKey="idTable" OtherKey="idTable" Type="BookedTable" IsForeignKey="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.Bill" Member="Bills">
@@ -26,7 +24,6 @@
       <Column Name="status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="discount" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="totalPrice" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Association Name="TableFood_Bill" Member="TableFood" ThisKey="idTable" OtherKey="idTable" Type="TableFood" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.BillInfo" Member="BillInfos">
@@ -48,7 +45,9 @@
       <Column Name="CustomerName" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
       <Column Name="CustomerPhone" Type="System.String" DbType="NChar(12)" CanBeNull="true" />
       <Column Name="CustomerAddress" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
-      <Association Name="BookedTable_TableFood" Member="TableFood" ThisKey="idTable" OtherKey="idTable" Type="TableFood" Cardinality="One" />
+      <Column Name="BookDate" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="BookTimeStart" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="BookTimeEnd" Type="System.String" DbType="Char(10)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Drink" Member="Drinks">
@@ -56,7 +55,8 @@
       <Column Name="idDrink" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="idCategoryDrink" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="price" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="image" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="Drink_BillInfo" Member="BillInfos" ThisKey="idDrink" OtherKey="idDrink" Type="BillInfo" />
       <Association Name="DrinkCategory_Drink" Member="DrinkCategory" ThisKey="idCategoryDrink" OtherKey="idCategoryDrink" Type="DrinkCategory" IsForeignKey="true" />
     </Type>
@@ -82,7 +82,8 @@
       <Column Name="idFood" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="idCategoryFood" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="price" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="image" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="Food_BillInfo" Member="BillInfos" ThisKey="idFood" OtherKey="idFood" Type="BillInfo" />
       <Association Name="FoodCategory_Food" Member="FoodCategory" ThisKey="idCategoryFood" OtherKey="idCategoryFood" Type="FoodCategory" IsForeignKey="true" />
     </Type>

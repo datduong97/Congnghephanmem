@@ -7,11 +7,11 @@ using System.Web.UI.WebControls;
 
 public partial class Admin_Views_QLDanhmucMonAn : System.Web.UI.Page
 {
-    QLQuanNuocDataContext qlqn;
+    QLQuanNuocGiaiKhatDataContext qlqn;
     private static bool mode;    
     public void display()
     {
-        qlqn = new QLQuanNuocDataContext();
+        qlqn = new QLQuanNuocGiaiKhatDataContext();
         var qlb = from item in qlqn.FoodCategories
                   select item;
         gvChuyenMuc.DataSource = qlb;
@@ -33,7 +33,7 @@ public partial class Admin_Views_QLDanhmucMonAn : System.Web.UI.Page
     protected void btnSaveChanges_Click(object sender, EventArgs e)
     {
         if (txtTenChuyenMuc.Text.Trim() == "") return;
-        qlqn = new QLQuanNuocDataContext();
+        qlqn = new QLQuanNuocGiaiKhatDataContext();
         if (mode==true)
         {
             FoodCategory fc = new FoodCategory();
@@ -77,7 +77,7 @@ public partial class Admin_Views_QLDanhmucMonAn : System.Web.UI.Page
         else if (e.CommandName == "btnXoa")
         {
             string s = gvChuyenMuc.Rows[row].Cells[0].Text;
-            qlqn = new QLQuanNuocDataContext();
+            qlqn = new QLQuanNuocGiaiKhatDataContext();
             var qlb = from item in qlqn.FoodCategories
                       where item.idCategoryFood == Convert.ToInt32(s)
                       select item;

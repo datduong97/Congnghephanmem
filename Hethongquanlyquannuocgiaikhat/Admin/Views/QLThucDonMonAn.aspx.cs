@@ -9,12 +9,14 @@ using System.Web.UI.WebControls;
 
 public partial class Admin_Views_QLThucDon : System.Web.UI.Page
 {
-    QLQuanNuocDataContext qlqn;
+    QLQuanNuocGiaiKhatDataContext qlqn;
     private static bool mode;
 
+
+    //hiên thị
     public void display()
     {
-        qlqn = new QLQuanNuocDataContext();
+        
         var qlb = from item in qlqn.Foods
                   select item;
         gvChuyenMuc.DataSource = qlb;
@@ -23,7 +25,7 @@ public partial class Admin_Views_QLThucDon : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        qlqn = new QLQuanNuocDataContext();
+        qlqn = new QLQuanNuocGiaiKhatDataContext();
         var ds = from item in qlqn.FoodCategories
                  select item;
         DropListMaLoai.DataSource = ds;
@@ -45,13 +47,12 @@ public partial class Admin_Views_QLThucDon : System.Web.UI.Page
     protected void btnSaveChanges_Click(object sender, EventArgs e)
     {
         if (txtTenChuyenMuc.Text.Trim() == "") return;
-        qlqn = new QLQuanNuocDataContext();
         if (mode == true)
         {
             Food fc = new Food();            
             fc.name = txtTenChuyenMuc.Text;
             fc.idCategoryFood = Convert.ToInt32(DropListMaLoai.SelectedValue.ToString());
-            fc.price = Convert.ToDouble( TxtGia.Text);
+            fc.price = Convert.ToInt32( TxtGia.Text);
             qlqn.Foods.InsertOnSubmit(fc);
             qlqn.SubmitChanges();
             lblError.Text = "Thêm thành công !";            
@@ -68,7 +69,7 @@ public partial class Admin_Views_QLThucDon : System.Web.UI.Page
             Food fc = qlb.First();
             fc.name = txtTenChuyenMuc.Text;
             fc.idCategoryFood = Convert.ToInt32(DropListMaLoai.SelectedValue.ToString());
-            fc.price = Convert.ToDouble(TxtGia.Text);
+            fc.price = Convert.ToInt32(TxtGia.Text);
             qlqn.SubmitChanges();
             lblError.Text = "Sửa thành công !";            
             txtTenChuyenMuc.Enabled = false;
@@ -97,7 +98,7 @@ public partial class Admin_Views_QLThucDon : System.Web.UI.Page
         else if (e.CommandName == "btnXoa")
         {
             string s = gvChuyenMuc.Rows[row].Cells[0].Text;
-            qlqn = new QLQuanNuocDataContext();
+            qlqn = new QLQuanNuocGiaiKhatDataContext();
             var qlb = from item in qlqn.Foods
                       where item.idFood == Convert.ToInt32(s)
                       select item;
