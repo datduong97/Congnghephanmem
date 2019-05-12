@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,36 +19,28 @@ namespace Web.Customer.Controllers
             _manager = manager;
             _tablemanager = tableManager;
         }
+        // GET: BookedTables
+        public async Task<IActionResult> Index()
+        {
+            return View(await _manager.GetTablesAsync());
+        }
 
+        [HttpGet]
         public virtual async Task<IActionResult> Create()
         {
             var rs = await _tablemanager.GetTablesAsync();
-            ViewBag.table = rs; ;
-            var retail = new BookedTableEditViewModel();
-            return View(retail);
+            ViewBag.table = rs;
+            return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Create(BookedTable bookedTable)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("idTable,CustomerName,CustomerPhone,CustomerAddress,BookDate,BookTimeStart,BookTimeEnd")] BookedTableEditViewModel bookedTableEditViewModel)
         {
-            int idTable = bookedTable.idTable;
-            string CustomerPhone = bookedTable.CustomerPhone;
-            string CustomerName = bookedTable.CustomerName;
-            string CustomerAddress = bookedTable.CustomerAddress;
-            string BookDate = bookedTable.BookDate;
-            string BookTimeStart = bookedTable.BookTimeStart;
-            string BookTimeEnd = bookedTable.BookTimeEnd;
 
-            var entity = await _manager.AddAsync(new BookedTable
-            {
-                idTable=idTable,
-                CustomerAddress = CustomerAddress,
-                CustomerName = CustomerName,
-                CustomerPhone = CustomerPhone,
-                BookDate = BookDate,
-                BookTimeStart= BookTimeStart,
-                BookTimeEnd= BookTimeEnd
-            });
-            return Json(entity);
+                var entyti=await _manager.AddAsync(bookedTableEditViewModel.ToModel());
+                //return RedirectToAction(nameof(Index));
+                return Json(entyti);
+
         }
 
 

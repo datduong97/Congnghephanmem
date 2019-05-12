@@ -1,51 +1,65 @@
-﻿@model BookedTableEditViewModel
-@using Web.Customer.Data
+﻿@model Web.Customer.Models.BookedTableEditViewModel
+
 @{
-    ViewData["Title"] = "IndexAsync";
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<h2>Create</h2>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Đặt bàn</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <style>
-        .itemBtn {
-            margin-right: 20px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="jumbotron text-center">
-            <h1>Chào mừng đến với cửa hàng DrinkFood !</h1>
-        </div>
-        <div class="row">
-            @using (Html.BeginForm())
-            {
- 
+<h4>BookedTableEditViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="idTable" class="control-label"></label>             
                 @Html.DropDownListFor(m => m.idTable,
-                    new SelectList(ViewBag.table, "idTable", "name"))
-                <p>Họ và tên:</p> @Html.TextBoxFor(s => s.CustomerName)
-                <p>Địa chỉ:</p> @Html.TextBoxFor(s => s.CustomerAddress)
-                <p>Số điện thoại:</p> @Html.TextBoxFor(s => s.CustomerPhone)
-                <p>Ngày đặt:</p> @Html.TextBoxFor(s => s.BookDate)
-                <p>Giờ bắt đầu:</p> @Html.TextBoxFor(s => s.BookTimeStart)
-                <p>Giờ dự kiến kết thúc:</p> @Html.TextBoxFor(s => s.BookTimeEnd)
-                <input type="submit" value="Ok" />
-
-            }
-
-        </div>
+                     new SelectList(ViewBag.table, "idTable", "name"),new { @class = "form-control" })
+                <span asp-validation-for="CustomerName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerName" class="control-label"></label>
+                <input asp-for="CustomerName" class="form-control" />
+                <span asp-validation-for="CustomerName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerPhone" class="control-label"></label>
+                <input asp-for="CustomerPhone" class="form-control" />
+                <span asp-validation-for="CustomerPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerAddress" class="control-label"></label>
+                <input asp-for="CustomerAddress" class="form-control" />
+                <span asp-validation-for="CustomerAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookDate" class="control-label"></label>
+                <input asp-for="BookDate" class="form-control" />
+                <span asp-validation-for="BookDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookTimeStart" class="control-label"></label>
+                <input asp-for="BookTimeStart" class="form-control" />
+                <span asp-validation-for="BookTimeStart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookTimeEnd" class="control-label"></label>
+                <input asp-for="BookTimeEnd" class="form-control" />
+                <span asp-validation-for="BookTimeEnd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
     </div>
-</body>
-</html>
+</div>
 
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
 
-
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

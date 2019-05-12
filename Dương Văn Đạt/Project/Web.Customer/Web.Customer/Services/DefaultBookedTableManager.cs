@@ -29,11 +29,12 @@ namespace Web.Customer.Services
             }
         }
 
-        public async Task<IEnumerable<BookedTable>> GetTablesAsync()
+        public async Task<IEnumerable<BookedTable>> GetTablesAsync( )
         {
 
             var query = _store.Query();
             //query = query.Where(o => o.name.Contains("ban 1",StringComparison.OrdinalIgnoreCase));
+            //query = query.Where(o => o.idTable.Equals(id));
 
             var rs = query.ToArray();
             return rs;

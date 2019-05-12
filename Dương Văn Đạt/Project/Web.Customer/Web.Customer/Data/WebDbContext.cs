@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Web.Customer.Models;
+using Web.Customer.Data;
 
 namespace Web.Customer.Data
 {
@@ -13,6 +15,7 @@ namespace Web.Customer.Data
 
         }
         public virtual DbSet<Table> Tables { get; set; }
+        public virtual DbSet<BookedTable> BookedTables { get; set; }
         public virtual DbSet<Food> Foods { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -42,5 +45,7 @@ namespace Web.Customer.Data
                 model.ToTable("BookedTable", "dbo");
             });
         }
+        public DbSet<Web.Customer.Models.BookedTableEditViewModel> BookedTableEditViewModel { get; set; }
+        public DbSet<Web.Customer.Data.BookedTable> BookedTable { get; set; }
     }
 }
