@@ -33,7 +33,8 @@
 
             <div class="navbar-header pull-left">
                 <a href="Default.aspx" class="navbar-brand">
-                    <small>                       
+                    <small>
+                       
                         Quản lý quán nước
                     </small>
                 </a>

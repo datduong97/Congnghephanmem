@@ -47,7 +47,7 @@ public partial class Admin_Views_demo : System.Web.UI.Page
             {               
                 qlqn.Tables.DeleteOnSubmit(ban);                
                 qlqn.SubmitChanges();
-                lblThongBao.Text = "Xóa thành công !";
+                lblError.Text = "Xóa thành công !";
                 display();
             }
         }
@@ -63,7 +63,7 @@ public partial class Admin_Views_demo : System.Web.UI.Page
             ban.status = txtTrangthai.Text;
             qlqn.Tables.InsertOnSubmit(ban);
             qlqn.SubmitChanges();
-            lblThongBao.Text = "Thêm thành công !";
+            lblError.Text = "Thêm thành công !";
             display();
         }
         else
@@ -75,7 +75,7 @@ public partial class Admin_Views_demo : System.Web.UI.Page
             ban.name = txtTenChuyenMuc.Text;
             ban.status = txtTrangthai.Text;
             qlqn.SubmitChanges();
-            lblThongBao.Text = "Sửa thành công !";
+            lblError.Text = "Sửa thành công !";
             display();
         }       
     }
