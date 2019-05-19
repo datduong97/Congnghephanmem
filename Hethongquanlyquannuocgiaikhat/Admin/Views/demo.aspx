@@ -25,7 +25,7 @@
             <asp:Button runat="server" ID="btnSave" CssClass="btn btn-sm btn-primary" Text="Thêm mới" OnClick="btnNew_Click" />
             <asp:Button runat="server" ID="btnSaveChanges" CssClass="btn btn-sm btn-success" Text="Lưu thay đổi" OnClick="btnSaveChanges_Click" />
             <asp:Button runat="server" ID="btnCancel" CssClass="btn btn-sm btn-default" Text="Đóng" OnClick="btnCancel_Click" />
-            &nbsp;<asp:Label ID="lblError" runat="server" Font-Bold="True" ForeColor="green"></asp:Label>
+            &nbsp;<asp:Label ID="lblThongBao" runat="server" Font-Bold="True" ForeColor="green"></asp:Label>
         </div>
     </asp:Panel>
 
