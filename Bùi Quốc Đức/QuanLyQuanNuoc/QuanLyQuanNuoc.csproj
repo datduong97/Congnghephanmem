@@ -141,6 +141,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
+    <Compile Include="Controllers\BillsController.cs" />
     <Compile Include="Controllers\BookedTablesController.cs" />
     <Compile Include="Controllers\DrinkCategoriesController.cs" />
     <Compile Include="Controllers\DrinksController.cs" />
@@ -194,6 +195,12 @@
     <Compile Include="Models\FoodCategory.cs">
       <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
     </Compile>
@@ -214,8 +221,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\CNPM_QLNGK.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CNPM_QLNGK.Context.cs</LastGenOutput>
       <DependentUpon>CNPM_QLNGK.edmx</DependentUpon>
+      <LastGenOutput>CNPM_QLNGK.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\CNPM_QLNGK.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -312,6 +319,11 @@
     <Content Include="Views\BookedTables\Edit.cshtml" />
     <Content Include="Views\BookedTables\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Bills\Create.cshtml" />
+    <Content Include="Views\Bills\Delete.cshtml" />
+    <Content Include="Views\Bills\Details.cshtml" />
+    <Content Include="Views\Bills\Edit.cshtml" />
+    <Content Include="Views\Bills\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

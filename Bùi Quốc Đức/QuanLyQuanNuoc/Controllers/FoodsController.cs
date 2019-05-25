@@ -12,7 +12,7 @@ namespace QuanLyQuanNuoc.Controllers
 {
     public class FoodsController : Controller
     {
-        private CNPM_QLNGKEntities db = new CNPM_QLNGKEntities();
+        private CNPM_QLNGKEntities1 db = new CNPM_QLNGKEntities1();
 
         // GET: Foods
         public ActionResult Index()

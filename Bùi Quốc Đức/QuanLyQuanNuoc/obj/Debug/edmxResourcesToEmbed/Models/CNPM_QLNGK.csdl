@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="CNPM_QLNGKModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Username" />
+    </Key>
+    <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Type" Type="Int32" Nullable="false" />
+  </EntityType>
   <EntityType Name="Bill">
     <Key>
       <PropertyRef Name="id" />
@@ -166,7 +175,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="CNPM_QLNGKEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="CNPM_QLNGKEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="Self.Account" />
     <EntitySet Name="Bills" EntityType="Self.Bill" />
     <EntitySet Name="BillInfoes" EntityType="Self.BillInfo" />
     <EntitySet Name="BookedTables" EntityType="Self.BookedTable" />
@@ -197,16 +207,46 @@
       <End Role="FoodCategory" EntitySet="FoodCategories" />
       <End Role="Food" EntitySet="Foods" />
     </AssociationSet>
-    <EntitySet Name="Accounts" EntityType="CNPM_QLNGKModel.Account" />
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(CNPM_QLNGKModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(CNPM_QLNGKModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
   </EntityContainer>
-  <EntityType Name="Account">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="DisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Type" Type="Boolean" />
-  </EntityType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
 </Schema>

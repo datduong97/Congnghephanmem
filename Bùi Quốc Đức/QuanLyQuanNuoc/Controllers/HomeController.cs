@@ -9,7 +9,7 @@ namespace QuanLyQuanNuoc.Controllers
 {
     public class HomeController : Controller
     {
-        private CNPM_QLNGKEntities db = new CNPM_QLNGKEntities();
+        private CNPM_QLNGKEntities1 db = new CNPM_QLNGKEntities1();
         public ActionResult Index()
         {
             return View();
@@ -33,7 +33,7 @@ namespace QuanLyQuanNuoc.Controllers
                       }).ToList();
             if (lg.FirstOrDefault() == null)
             {
-                acc.LoginError = "Username hoặc Password không đúng";
+                //acc.LoginError = "Username hoặc Password không đúng";
                 return RedirectToAction("Login", "Home");
 
             }

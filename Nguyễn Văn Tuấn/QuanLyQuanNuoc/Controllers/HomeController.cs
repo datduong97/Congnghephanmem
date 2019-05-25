@@ -34,6 +34,7 @@ namespace QuanLyQuanNuoc.Controllers
             if (lg.FirstOrDefault() == null)
             {
                 acc.LoginError = "Username hoặc Password không đúng";
+                acc.LoginError = "xyz";
                 return RedirectToAction("Login", "Home");
 
             }
