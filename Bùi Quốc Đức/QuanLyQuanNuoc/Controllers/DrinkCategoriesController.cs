@@ -48,6 +48,12 @@ namespace QuanLyQuanNuoc.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IdCategoryDrink,CategoryDrinkName")] DrinkCategory drinkCategory)
         {
+            int idcare = Convert.ToInt32(Request["IdCategoryDrink"]);
+            var ds = db.DrinkCategories.Where(x => x.IdCategoryDrink == idcare);
+            if (ds.Count() > 0)
+            {
+                ModelState.AddModelError("", "Mã danh mục đã tồn tại");
+            }
             if (ModelState.IsValid)
             {
                 db.DrinkCategories.Add(drinkCategory);

@@ -18,6 +18,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.idTable, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+                @Html.DropDownList("idTable", null, htmlAttributes: new { @class = "form-control" })
                 @Html.EditorFor(model => model.idTable, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.idTable, "", new { @class = "text-danger" })
             </div>
@@ -50,7 +51,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.BookDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.BookDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.BookDate, new { htmlAttributes = new { @class = "form-control oso", @type = "date" } })
                 @Html.ValidationMessageFor(model => model.BookDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -58,7 +59,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.BookTimeStart, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.BookTimeStart, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.BookTimeStart, new { htmlAttributes = new { @class = "form-control oso", @type = "date" } })
                 @Html.ValidationMessageFor(model => model.BookTimeStart, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -66,7 +67,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.BookTimeEnd, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.BookTimeEnd, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.BookTimeEnd, new { htmlAttributes = new { @class = "form-control oso", @type = "date" } })
                 @Html.ValidationMessageFor(model => model.BookTimeEnd, "", new { @class = "text-danger" })
             </div>
         </div>

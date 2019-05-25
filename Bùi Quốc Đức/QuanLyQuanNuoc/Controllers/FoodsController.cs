@@ -51,6 +51,7 @@ namespace QuanLyQuanNuoc.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IdFood,FoodName,IdCategoryFood,Price,Image")] Food food)
         {
+
             if (ModelState.IsValid)
             {
                 db.Foods.Add(food);

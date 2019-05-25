@@ -39,7 +39,7 @@ namespace QuanLyQuanNuoc.Controllers
         // GET: Drinks/Create
         public ActionResult Create()
         {
-            ViewBag.idCategoryDrink = new SelectList(db.DrinkCategories, "IdCategoryDrink", "CategoryDrinkName");
+            ViewBag.IdCategoryDrink = new SelectList(db.DrinkCategories, "IdCategoryDrink", "CategoryDrinkName");
             return View();
         }
 

@@ -25,9 +25,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IdCategoryDrink, "idCategoryDrink", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.IdCategoryDrink, "IdCategoryDrink", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("CategoryDrink", null, htmlAttributes: new { @class = "form-control" })
+                @*Html.DropDownList("CategoryDrink", (IEnumerable<SelectListItem>)ViewBag.IdCategoryDrink, htmlAttributes: new { @class = "form-control" })*@
+                @Html.DropDownList("idCategoryDrink", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IdCategoryDrink, "", new { @class = "text-danger" })
             </div>
         </div>

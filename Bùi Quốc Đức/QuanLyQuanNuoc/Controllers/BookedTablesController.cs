@@ -70,6 +70,8 @@ namespace QuanLyQuanNuoc.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.idTable = new SelectList(db.Tables, "idTable", "name", bookedTable.idTable);
+            ViewBag.idTable = new SelectList(db.Tables, "idTable", "name", bookedTable.idTable);
             return View(bookedTable);
         }
 
@@ -86,6 +88,8 @@ namespace QuanLyQuanNuoc.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.idTable = new SelectList(db.Tables, "idTable", "TableName", bookedTable.idTable);
+            ViewBag.idTable = new SelectList(db.Tables, "idTable", "TableName", bookedTable.idTable);
             return View(bookedTable);
         }
 
