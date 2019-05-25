@@ -5,10 +5,17 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="CNPM_QLNGKModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CNPM_QLNGK.dbo.Account' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Account">
           <Key>
+            <PropertyRef Name="Id" />
             <PropertyRef Name="Username" />
+            <PropertyRef Name="DisplayName" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="Type" />
           </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Username" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="DisplayName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="1000" Nullable="false" />
@@ -16,26 +23,26 @@
         </EntityType>
         <EntityType Name="Bill">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="IdBill" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdBill" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DateCheckIn" Type="date" Nullable="false" />
           <Property Name="DateCheckOut" Type="date" />
-          <Property Name="idTable" Type="int" Nullable="false" />
-          <Property Name="status" Type="int" Nullable="false" />
-          <Property Name="discount" Type="int" />
-          <Property Name="totalPrice" Type="float" />
+          <Property Name="IdTable" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Discount" Type="int" />
+          <Property Name="TotalPrice" Type="float" />
         </EntityType>
         <EntityType Name="BillInfo">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="IdBillInfo" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="idBill" Type="int" Nullable="false" />
-          <Property Name="idFood" Type="int" Nullable="false" />
-          <Property Name="idDrink" Type="int" />
-          <Property Name="count" Type="float" Nullable="false" />
-          <Property Name="idEmp" Type="nvarchar" MaxLength="25" />
+          <Property Name="IdBillInfo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdBill" Type="int" Nullable="false" />
+          <Property Name="IdFood" Type="int" Nullable="false" />
+          <Property Name="IdDrink" Type="int" />
+          <Property Name="Count" Type="float" Nullable="false" />
+          <Property Name="IdEmp" Type="nvarchar" MaxLength="25" />
         </EntityType>
         <EntityType Name="BookedTable">
           <Key>
@@ -51,46 +58,46 @@
         </EntityType>
         <EntityType Name="Drink">
           <Key>
-            <PropertyRef Name="idDrink" />
+            <PropertyRef Name="IdDrink" />
           </Key>
-          <Property Name="idDrink" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="idCategoryDrink" Type="int" Nullable="false" />
-          <Property Name="price" Type="int" Nullable="false" />
-          <Property Name="image" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdDrink" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DrinkName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdCategoryDrink" Type="int" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="Image" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="DrinkCategory">
           <Key>
-            <PropertyRef Name="idCategoryDrink" />
+            <PropertyRef Name="IdCategoryDrink" />
           </Key>
-          <Property Name="idCategoryDrink" Type="int" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdCategoryDrink" Type="int" Nullable="false" />
+          <Property Name="CategoryDrinkName" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Employees">
           <Key>
-            <PropertyRef Name="idEmp" />
+            <PropertyRef Name="IdEmp" />
           </Key>
-          <Property Name="idEmp" Type="nvarchar" MaxLength="25" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" />
-          <Property Name="address" Type="nvarchar" MaxLength="60" />
-          <Property Name="phone" Type="char" MaxLength="10" />
+          <Property Name="IdEmp" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="60" />
+          <Property Name="Phone" Type="char" MaxLength="10" />
         </EntityType>
         <EntityType Name="Food">
           <Key>
-            <PropertyRef Name="idFood" />
+            <PropertyRef Name="IdFood" />
           </Key>
-          <Property Name="idFood" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="idCategoryFood" Type="int" Nullable="false" />
-          <Property Name="price" Type="int" Nullable="false" />
-          <Property Name="image" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdFood" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FoodName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdCategoryFood" Type="int" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="Image" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="FoodCategory">
           <Key>
-            <PropertyRef Name="idCategoryFood" />
+            <PropertyRef Name="IdCategoryFood" />
           </Key>
-          <Property Name="idCategoryFood" Type="int" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdCategoryFood" Type="int" Nullable="false" />
+          <Property Name="CategoryFoodName" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -104,21 +111,45 @@
         </EntityType>
         <EntityType Name="Table">
           <Key>
-            <PropertyRef Name="idTable" />
+            <PropertyRef Name="IdTable" />
           </Key>
-          <Property Name="idTable" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="status" Type="bit" Nullable="false" />
+          <Property Name="IdTable" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TableName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Bill_Table">
+          <End Role="Table" Type="Self.Table" Multiplicity="1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table">
+              <PropertyRef Name="IdTable" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="IdTable" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BillInfo_Bill">
+          <End Role="Bill" Type="Self.Bill" Multiplicity="1" />
+          <End Role="BillInfo" Type="Self.BillInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bill">
+              <PropertyRef Name="IdBill" />
+            </Principal>
+            <Dependent Role="BillInfo">
+              <PropertyRef Name="IdBill" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_BillInfo_Drink">
           <End Role="Drink" Type="Self.Drink" Multiplicity="0..1" />
           <End Role="BillInfo" Type="Self.BillInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Drink">
-              <PropertyRef Name="idDrink" />
+              <PropertyRef Name="IdDrink" />
             </Principal>
             <Dependent Role="BillInfo">
-              <PropertyRef Name="idDrink" />
+              <PropertyRef Name="IdDrink" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -127,10 +158,10 @@
           <End Role="BillInfo" Type="Self.BillInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employees">
-              <PropertyRef Name="idEmp" />
+              <PropertyRef Name="IdEmp" />
             </Principal>
             <Dependent Role="BillInfo">
-              <PropertyRef Name="idEmp" />
+              <PropertyRef Name="IdEmp" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -139,10 +170,10 @@
           <End Role="BillInfo" Type="Self.BillInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Food">
-              <PropertyRef Name="idFood" />
+              <PropertyRef Name="IdFood" />
             </Principal>
             <Dependent Role="BillInfo">
-              <PropertyRef Name="idFood" />
+              <PropertyRef Name="IdFood" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -151,10 +182,10 @@
           <End Role="Drink" Type="Self.Drink" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DrinkCategory">
-              <PropertyRef Name="idCategoryDrink" />
+              <PropertyRef Name="IdCategoryDrink" />
             </Principal>
             <Dependent Role="Drink">
-              <PropertyRef Name="idCategoryDrink" />
+              <PropertyRef Name="IdCategoryDrink" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -163,10 +194,10 @@
           <End Role="Food" Type="Self.Food" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FoodCategory">
-              <PropertyRef Name="idCategoryFood" />
+              <PropertyRef Name="IdCategoryFood" />
             </Principal>
             <Dependent Role="Food">
-              <PropertyRef Name="idCategoryFood" />
+              <PropertyRef Name="IdCategoryFood" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -202,7 +233,6 @@
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="CNPM_QLNGKModelStoreContainer">
-          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Bill" EntityType="Self.Bill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BillInfo" EntityType="Self.BillInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BookedTable" EntityType="Self.BookedTable" Schema="dbo" store:Type="Tables" />
@@ -213,6 +243,23 @@
           <EntitySet Name="FoodCategory" EntityType="Self.FoodCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Account" EntityType="Self.Account" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Account].[Id] AS [Id], 
+    [Account].[Username] AS [Username], 
+    [Account].[DisplayName] AS [DisplayName], 
+    [Account].[Password] AS [Password], 
+    [Account].[Type] AS [Type]
+    FROM [dbo].[Account] AS [Account]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Bill_Table" Association="Self.FK_Bill_Table">
+            <End Role="Table" EntitySet="Table" />
+            <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BillInfo_Bill" Association="Self.FK_BillInfo_Bill">
+            <End Role="Bill" EntitySet="Bill" />
+            <End Role="BillInfo" EntitySet="BillInfo" />
+          </AssociationSet>
           <AssociationSet Name="FK_BillInfo_Drink" Association="Self.FK_BillInfo_Drink">
             <End Role="Drink" EntitySet="Drink" />
             <End Role="BillInfo" EntitySet="BillInfo" />
@@ -239,37 +286,31 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CNPM_QLNGKModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Account">
-          <Key>
-            <PropertyRef Name="Username" />
-          </Key>
-          <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Type" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="Bill">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="IdBill" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdBill" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DateCheckIn" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="DateCheckOut" Type="DateTime" Precision="0" />
-          <Property Name="idTable" Type="Int32" Nullable="false" />
-          <Property Name="status" Type="Int32" Nullable="false" />
-          <Property Name="discount" Type="Int32" />
-          <Property Name="totalPrice" Type="Double" />
+          <Property Name="IdTable" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Discount" Type="Int32" />
+          <Property Name="TotalPrice" Type="Double" />
+          <NavigationProperty Name="Table" Relationship="Self.FK_Bill_Table" FromRole="Bill" ToRole="Table" />
+          <NavigationProperty Name="BillInfoes" Relationship="Self.FK_BillInfo_Bill" FromRole="Bill" ToRole="BillInfo" />
         </EntityType>
         <EntityType Name="BillInfo">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="IdBillInfo" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idBill" Type="Int32" Nullable="false" />
-          <Property Name="idFood" Type="Int32" Nullable="false" />
-          <Property Name="idDrink" Type="Int32" />
-          <Property Name="count" Type="Double" Nullable="false" />
-          <Property Name="idEmp" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="IdBillInfo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdBill" Type="Int32" Nullable="false" />
+          <Property Name="IdFood" Type="Int32" Nullable="false" />
+          <Property Name="IdDrink" Type="Int32" />
+          <Property Name="Count" Type="Double" Nullable="false" />
+          <Property Name="IdEmp" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Bill" Relationship="Self.FK_BillInfo_Bill" FromRole="BillInfo" ToRole="Bill" />
           <NavigationProperty Name="Drink" Relationship="Self.FK_BillInfo_Drink" FromRole="BillInfo" ToRole="Drink" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_BillInfo_Employees" FromRole="BillInfo" ToRole="Employees" />
           <NavigationProperty Name="Food" Relationship="Self.FK_BillInfo_Food" FromRole="BillInfo" ToRole="Food" />
@@ -288,52 +329,52 @@
         </EntityType>
         <EntityType Name="Drink">
           <Key>
-            <PropertyRef Name="idDrink" />
+            <PropertyRef Name="IdDrink" />
           </Key>
-          <Property Name="idDrink" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="idCategoryDrink" Type="Int32" Nullable="false" />
-          <Property Name="price" Type="Int32" Nullable="false" />
-          <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdDrink" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DrinkName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdCategoryDrink" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BillInfoes" Relationship="Self.FK_BillInfo_Drink" FromRole="Drink" ToRole="BillInfo" />
           <NavigationProperty Name="DrinkCategory" Relationship="Self.FK_Drink_DrinkCategory" FromRole="Drink" ToRole="DrinkCategory" />
         </EntityType>
         <EntityType Name="DrinkCategory">
           <Key>
-            <PropertyRef Name="idCategoryDrink" />
+            <PropertyRef Name="IdCategoryDrink" />
           </Key>
-          <Property Name="idCategoryDrink" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdCategoryDrink" Type="Int32" Nullable="false" />
+          <Property Name="CategoryDrinkName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Drinks" Relationship="Self.FK_Drink_DrinkCategory" FromRole="DrinkCategory" ToRole="Drink" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
-            <PropertyRef Name="idEmp" />
+            <PropertyRef Name="IdEmp" />
           </Key>
-          <Property Name="idEmp" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="address" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="phone" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="IdEmp" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="BillInfoes" Relationship="Self.FK_BillInfo_Employees" FromRole="Employees" ToRole="BillInfo" />
         </EntityType>
         <EntityType Name="Food">
           <Key>
-            <PropertyRef Name="idFood" />
+            <PropertyRef Name="IdFood" />
           </Key>
-          <Property Name="idFood" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="idCategoryFood" Type="Int32" Nullable="false" />
-          <Property Name="price" Type="Int32" Nullable="false" />
-          <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdFood" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FoodName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdCategoryFood" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BillInfoes" Relationship="Self.FK_BillInfo_Food" FromRole="Food" ToRole="BillInfo" />
           <NavigationProperty Name="FoodCategory" Relationship="Self.FK_Food_FoodCategory" FromRole="Food" ToRole="FoodCategory" />
         </EntityType>
         <EntityType Name="FoodCategory">
           <Key>
-            <PropertyRef Name="idCategoryFood" />
+            <PropertyRef Name="IdCategoryFood" />
           </Key>
-          <Property Name="idCategoryFood" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdCategoryFood" Type="Int32" Nullable="false" />
+          <Property Name="CategoryFoodName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Foods" Relationship="Self.FK_Food_FoodCategory" FromRole="FoodCategory" ToRole="Food" />
         </EntityType>
         <EntityType Name="sysdiagram">
@@ -348,21 +389,60 @@
         </EntityType>
         <EntityType Name="Table">
           <Key>
-            <PropertyRef Name="idTable" />
+            <PropertyRef Name="IdTable" />
           </Key>
-          <Property Name="idTable" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="status" Type="Boolean" Nullable="false" />
+          <Property Name="IdTable" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TableName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Bills" Relationship="Self.FK_Bill_Table" FromRole="Table" ToRole="Bill" />
         </EntityType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="DisplayName" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="Type" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Bill_Table">
+          <End Role="Table" Type="Self.Table" Multiplicity="1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table">
+              <PropertyRef Name="IdTable" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="IdTable" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BillInfo_Bill">
+          <End Role="Bill" Type="Self.Bill" Multiplicity="1" />
+          <End Role="BillInfo" Type="Self.BillInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bill">
+              <PropertyRef Name="IdBill" />
+            </Principal>
+            <Dependent Role="BillInfo">
+              <PropertyRef Name="IdBill" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_BillInfo_Drink">
           <End Role="Drink" Type="Self.Drink" Multiplicity="0..1" />
           <End Role="BillInfo" Type="Self.BillInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Drink">
-              <PropertyRef Name="idDrink" />
+              <PropertyRef Name="IdDrink" />
             </Principal>
             <Dependent Role="BillInfo">
-              <PropertyRef Name="idDrink" />
+              <PropertyRef Name="IdDrink" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -371,10 +451,10 @@
           <End Role="BillInfo" Type="Self.BillInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employees">
-              <PropertyRef Name="idEmp" />
+              <PropertyRef Name="IdEmp" />
             </Principal>
             <Dependent Role="BillInfo">
-              <PropertyRef Name="idEmp" />
+              <PropertyRef Name="IdEmp" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -383,10 +463,10 @@
           <End Role="BillInfo" Type="Self.BillInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Food">
-              <PropertyRef Name="idFood" />
+              <PropertyRef Name="IdFood" />
             </Principal>
             <Dependent Role="BillInfo">
-              <PropertyRef Name="idFood" />
+              <PropertyRef Name="IdFood" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -395,10 +475,10 @@
           <End Role="Drink" Type="Self.Drink" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DrinkCategory">
-              <PropertyRef Name="idCategoryDrink" />
+              <PropertyRef Name="IdCategoryDrink" />
             </Principal>
             <Dependent Role="Drink">
-              <PropertyRef Name="idCategoryDrink" />
+              <PropertyRef Name="IdCategoryDrink" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -407,15 +487,14 @@
           <End Role="Food" Type="Self.Food" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FoodCategory">
-              <PropertyRef Name="idCategoryFood" />
+              <PropertyRef Name="IdCategoryFood" />
             </Principal>
             <Dependent Role="Food">
-              <PropertyRef Name="idCategoryFood" />
+              <PropertyRef Name="IdCategoryFood" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CNPM_QLNGKEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Accounts" EntityType="Self.Account" />
+        <EntityContainer Name="CNPM_QLNGKEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Bills" EntityType="Self.Bill" />
           <EntitySet Name="BillInfoes" EntityType="Self.BillInfo" />
           <EntitySet Name="BookedTables" EntityType="Self.BookedTable" />
@@ -426,6 +505,15 @@
           <EntitySet Name="FoodCategories" EntityType="Self.FoodCategory" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Tables" EntityType="Self.Table" />
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <AssociationSet Name="FK_Bill_Table" Association="Self.FK_Bill_Table">
+            <End Role="Table" EntitySet="Tables" />
+            <End Role="Bill" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BillInfo_Bill" Association="Self.FK_BillInfo_Bill">
+            <End Role="Bill" EntitySet="Bills" />
+            <End Role="BillInfo" EntitySet="BillInfoes" />
+          </AssociationSet>
           <AssociationSet Name="FK_BillInfo_Drink" Association="Self.FK_BillInfo_Drink">
             <End Role="Drink" EntitySet="Drinks" />
             <End Role="BillInfo" EntitySet="BillInfoes" />
@@ -493,39 +581,29 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CNPM_QLNGKModelStoreContainer" CdmEntityContainer="CNPM_QLNGKEntities1">
-          <EntitySetMapping Name="Accounts">
-            <EntityTypeMapping TypeName="CNPM_QLNGKModel.Account">
-              <MappingFragment StoreEntitySet="Account">
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+        <EntityContainerMapping StorageEntityContainer="CNPM_QLNGKModelStoreContainer" CdmEntityContainer="CNPM_QLNGKEntities">
           <EntitySetMapping Name="Bills">
             <EntityTypeMapping TypeName="CNPM_QLNGKModel.Bill">
               <MappingFragment StoreEntitySet="Bill">
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="IdBill" ColumnName="IdBill" />
                 <ScalarProperty Name="DateCheckIn" ColumnName="DateCheckIn" />
                 <ScalarProperty Name="DateCheckOut" ColumnName="DateCheckOut" />
-                <ScalarProperty Name="idTable" ColumnName="idTable" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="discount" ColumnName="discount" />
-                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="IdTable" ColumnName="IdTable" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BillInfoes">
             <EntityTypeMapping TypeName="CNPM_QLNGKModel.BillInfo">
               <MappingFragment StoreEntitySet="BillInfo">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="idBill" ColumnName="idBill" />
-                <ScalarProperty Name="idFood" ColumnName="idFood" />
-                <ScalarProperty Name="idDrink" ColumnName="idDrink" />
-                <ScalarProperty Name="count" ColumnName="count" />
-                <ScalarProperty Name="idEmp" ColumnName="idEmp" />
+                <ScalarProperty Name="IdBillInfo" ColumnName="IdBillInfo" />
+                <ScalarProperty Name="IdBill" ColumnName="IdBill" />
+                <ScalarProperty Name="IdFood" ColumnName="IdFood" />
+                <ScalarProperty Name="IdDrink" ColumnName="IdDrink" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="IdEmp" ColumnName="IdEmp" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -545,48 +623,48 @@
           <EntitySetMapping Name="Drinks">
             <EntityTypeMapping TypeName="CNPM_QLNGKModel.Drink">
               <MappingFragment StoreEntitySet="Drink">
-                <ScalarProperty Name="idDrink" ColumnName="idDrink" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="idCategoryDrink" ColumnName="idCategoryDrink" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="IdDrink" ColumnName="IdDrink" />
+                <ScalarProperty Name="DrinkName" ColumnName="DrinkName" />
+                <ScalarProperty Name="IdCategoryDrink" ColumnName="IdCategoryDrink" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DrinkCategories">
             <EntityTypeMapping TypeName="CNPM_QLNGKModel.DrinkCategory">
               <MappingFragment StoreEntitySet="DrinkCategory">
-                <ScalarProperty Name="idCategoryDrink" ColumnName="idCategoryDrink" />
-                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="IdCategoryDrink" ColumnName="IdCategoryDrink" />
+                <ScalarProperty Name="CategoryDrinkName" ColumnName="CategoryDrinkName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="CNPM_QLNGKModel.Employee">
               <MappingFragment StoreEntitySet="Employees">
-                <ScalarProperty Name="idEmp" ColumnName="idEmp" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="IdEmp" ColumnName="IdEmp" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Foods">
             <EntityTypeMapping TypeName="CNPM_QLNGKModel.Food">
               <MappingFragment StoreEntitySet="Food">
-                <ScalarProperty Name="idFood" ColumnName="idFood" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="idCategoryFood" ColumnName="idCategoryFood" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="IdFood" ColumnName="IdFood" />
+                <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+                <ScalarProperty Name="IdCategoryFood" ColumnName="IdCategoryFood" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="FoodCategories">
             <EntityTypeMapping TypeName="CNPM_QLNGKModel.FoodCategory">
               <MappingFragment StoreEntitySet="FoodCategory">
-                <ScalarProperty Name="idCategoryFood" ColumnName="idCategoryFood" />
-                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="IdCategoryFood" ColumnName="IdCategoryFood" />
+                <ScalarProperty Name="CategoryFoodName" ColumnName="CategoryFoodName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -604,9 +682,20 @@
           <EntitySetMapping Name="Tables">
             <EntityTypeMapping TypeName="CNPM_QLNGKModel.Table">
               <MappingFragment StoreEntitySet="Table">
-                <ScalarProperty Name="idTable" ColumnName="idTable" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="IdTable" ColumnName="IdTable" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="CNPM_QLNGKModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

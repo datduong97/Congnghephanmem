@@ -19,16 +19,16 @@
             @Html.DisplayNameFor(model => model.DateCheckOut)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.idTable)
+            @Html.DisplayNameFor(model => model.IdTable)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.status)
+            @Html.DisplayNameFor(model => model.Status)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.discount)
+            @Html.DisplayNameFor(model => model.Discount)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.totalPrice)
+            @Html.DisplayNameFor(model => model.TotalPrice)
         </th>
         <th></th>
     </tr>
@@ -42,21 +42,21 @@
             @Html.DisplayFor(modelItem => item.DateCheckOut)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.idTable)
+            @Html.DisplayFor(modelItem => item.IdTable)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.status)
+            @Html.DisplayFor(modelItem => item.Status)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.discount)
+            @Html.DisplayFor(modelItem => item.Discount)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.totalPrice)
+            @Html.DisplayFor(modelItem => item.TotalPrice)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdBill }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdBill }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdBill })
         </td>
     </tr>
 }

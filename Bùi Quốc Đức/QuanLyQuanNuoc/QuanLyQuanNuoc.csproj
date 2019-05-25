@@ -154,60 +154,65 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.cs">
-      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
+      <DependentUpon>CNPM_QNGK.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Bill.cs">
-      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
+      <DependentUpon>CNPM_QNGK.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BillInfo.cs">
-      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
+      <DependentUpon>CNPM_QNGK.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BookedTable.cs">
-      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
+      <DependentUpon>CNPM_QNGK.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CNPM_QLNGK.Context.cs">
+    <Compile Include="Models\CNPM_QNGK.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CNPM_QLNGK.Context.tt</DependentUpon>
+      <DependentUpon>CNPM_QNGK.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CNPM_QLNGK.cs">
+    <Compile Include="Models\CNPM_QNGK.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
+      <DependentUpon>CNPM_QNGK.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CNPM_QLNGK.Designer.cs">
+    <Compile Include="Models\CNPM_QNGK.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CNPM_QLNGK.edmx</DependentUpon>
+      <DependentUpon>CNPM_QNGK.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Drink.cs">
-      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
+      <DependentUpon>CNPM_QNGK.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DrinkCategory.cs">
-      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
+      <DependentUpon>CNPM_QNGK.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Employee.cs">
-      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
+      <DependentUpon>CNPM_QNGK.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Food.cs">
-      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
+      <DependentUpon>CNPM_QNGK.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FoodCategory.cs">
-      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
+      <DependentUpon>CNPM_QNGK.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
+      <DependentUpon>CNPM_QNGK.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
+      <DependentUpon>CNPM_QNGK.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
+      <DependentUpon>CNPM_QNGK.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Table.cs">
-      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
+      <DependentUpon>CNPM_QNGK.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportViewer\DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -219,24 +224,35 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\CNPM_QLNGK.Context.tt">
+    <Content Include="Models\CNPM_QNGK.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CNPM_QLNGK.edmx</DependentUpon>
-      <LastGenOutput>CNPM_QLNGK.Context.cs</LastGenOutput>
+      <DependentUpon>CNPM_QNGK.edmx</DependentUpon>
+      <LastGenOutput>CNPM_QNGK.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\CNPM_QLNGK.tt">
+    <Content Include="Models\CNPM_QNGK.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CNPM_QLNGK.edmx</DependentUpon>
-      <LastGenOutput>CNPM_QLNGK.cs</LastGenOutput>
+      <DependentUpon>CNPM_QNGK.edmx</DependentUpon>
+      <LastGenOutput>CNPM_QNGK.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\CNPM_QLNGK.edmx">
+    <EntityDeploy Include="Models\CNPM_QNGK.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CNPM_QLNGK.Designer.cs</LastGenOutput>
+      <LastGenOutput>CNPM_QNGK.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\CNPM_QLNGK.edmx.diagram">
-      <DependentUpon>CNPM_QLNGK.edmx</DependentUpon>
+    <Content Include="Models\CNPM_QNGK.edmx.diagram">
+      <DependentUpon>CNPM_QNGK.edmx</DependentUpon>
+    </Content>
+    <Content Include="ReportViewer\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Content>
+    <None Include="ReportViewer\DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="ReportViewer\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

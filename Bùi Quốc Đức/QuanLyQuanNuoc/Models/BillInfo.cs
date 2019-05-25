@@ -14,13 +14,14 @@ namespace QuanLyQuanNuoc.Models
     
     public partial class BillInfo
     {
-        public int id { get; set; }
-        public int idBill { get; set; }
-        public int idFood { get; set; }
-        public Nullable<int> idDrink { get; set; }
-        public double count { get; set; }
-        public string idEmp { get; set; }
+        public int IdBillInfo { get; set; }
+        public int IdBill { get; set; }
+        public int IdFood { get; set; }
+        public Nullable<int> IdDrink { get; set; }
+        public double Count { get; set; }
+        public string IdEmp { get; set; }
     
+        public virtual Bill Bill { get; set; }
         public virtual Drink Drink { get; set; }
         public virtual Employee Employee { get; set; }
         public virtual Food Food { get; set; }

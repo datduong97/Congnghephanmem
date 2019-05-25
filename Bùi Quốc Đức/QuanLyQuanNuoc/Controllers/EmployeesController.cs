@@ -12,7 +12,8 @@ namespace QuanLyQuanNuoc.Controllers
 {
     public class EmployeesController : Controller
     {
-        private CNPM_QLNGKEntities1 db = new CNPM_QLNGKEntities1();
+        private CNPM_QLNGKEntities db = new CNPM_QLNGKEntities();
+
 
         // GET: Employees
         public ActionResult Index()
@@ -46,7 +47,7 @@ namespace QuanLyQuanNuoc.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idEmp,name,address,phone")] Employee employee)
+        public ActionResult Create([Bind(Include = "IdEmp,Name,Address,Phone")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +79,7 @@ namespace QuanLyQuanNuoc.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idEmp,name,address,phone")] Employee employee)
+        public ActionResult Edit([Bind(Include = "IdEmp,Name,Address,Phone")] Employee employee)
         {
             if (ModelState.IsValid)
             {

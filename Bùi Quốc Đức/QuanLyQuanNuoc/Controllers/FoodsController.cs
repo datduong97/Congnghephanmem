@@ -12,7 +12,8 @@ namespace QuanLyQuanNuoc.Controllers
 {
     public class FoodsController : Controller
     {
-        private CNPM_QLNGKEntities1 db = new CNPM_QLNGKEntities1();
+        private CNPM_QLNGKEntities db = new CNPM_QLNGKEntities();
+
 
         // GET: Foods
         public ActionResult Index()
@@ -39,7 +40,7 @@ namespace QuanLyQuanNuoc.Controllers
         // GET: Foods/Create
         public ActionResult Create()
         {
-            ViewBag.idCategoryFood = new SelectList(db.FoodCategories, "idCategoryFood", "name");
+            ViewBag.idCategoryFood = new SelectList(db.FoodCategories, "IdCategoryFood,CategoryFoodName");
             return View();
         }
 
@@ -48,7 +49,7 @@ namespace QuanLyQuanNuoc.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idFood,name,idCategoryFood,price,image")] Food food)
+        public ActionResult Create([Bind(Include = "IdFood,FoodName,IdCategoryFood,Price,Image")] Food food)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +58,7 @@ namespace QuanLyQuanNuoc.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idCategoryFood = new SelectList(db.FoodCategories, "idCategoryFood", "name", food.idCategoryFood);
+            ViewBag.idCategoryFood = new SelectList(db.FoodCategories, "IdCategoryFood", "CategoryFoodName", food.IdCategoryFood);
             return View(food);
         }
 
@@ -73,7 +74,7 @@ namespace QuanLyQuanNuoc.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.idCategoryFood = new SelectList(db.FoodCategories, "idCategoryFood", "name", food.idCategoryFood);
+            ViewBag.idCategoryFood = new SelectList(db.FoodCategories, "IdCategoryFood", "CategoryFoodName", food.IdCategoryFood);
             return View(food);
         }
 
@@ -82,7 +83,7 @@ namespace QuanLyQuanNuoc.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idFood,name,idCategoryFood,price,image")] Food food)
+        public ActionResult Edit([Bind(Include = "IdFood,FoodName,IdCategoryFood,Price,Image")] Food food)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +91,7 @@ namespace QuanLyQuanNuoc.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.idCategoryFood = new SelectList(db.FoodCategories, "idCategoryFood", "name", food.idCategoryFood);
+            ViewBag.idCategoryFood = new SelectList(db.FoodCategories, "IdCategoryFood", "CategoryFoodName", food.IdCategoryFood);
             return View(food);
         }
 

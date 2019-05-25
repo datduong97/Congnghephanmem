@@ -12,7 +12,7 @@ namespace QuanLyQuanNuoc.Controllers
 {
     public class AccountsController : Controller
     {
-        private CNPM_QLNGKEntities1 db = new CNPM_QLNGKEntities1();
+        private CNPM_QLNGKEntities db = new CNPM_QLNGKEntities();
 
         // GET: Accounts
         public ActionResult Index()
@@ -46,7 +46,7 @@ namespace QuanLyQuanNuoc.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,Username,DisplayName,Password,Type")] Account account)
+        public ActionResult Create([Bind(Include = "Id,Username,DisplayName,Password,Type")] Account account)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace QuanLyQuanNuoc.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,Username,DisplayName,Password,Type")] Account account)
+        public ActionResult Edit([Bind(Include = "Id,Username,DisplayName,Password,Type")] Account account)
         {
             if (ModelState.IsValid)
             {

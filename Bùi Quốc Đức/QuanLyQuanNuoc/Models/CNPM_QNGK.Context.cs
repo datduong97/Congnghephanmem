@@ -15,10 +15,10 @@ namespace QuanLyQuanNuoc.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class CNPM_QLNGKEntities1 : DbContext
+    public partial class CNPM_QLNGKEntities : DbContext
     {
-        public CNPM_QLNGKEntities1()
-            : base("name=CNPM_QLNGKEntities1")
+        public CNPM_QLNGKEntities()
+            : base("name=CNPM_QLNGKEntities")
         {
         }
     
@@ -27,7 +27,6 @@ namespace QuanLyQuanNuoc.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Bill> Bills { get; set; }
         public virtual DbSet<BillInfo> BillInfoes { get; set; }
         public virtual DbSet<BookedTable> BookedTables { get; set; }
@@ -38,6 +37,7 @@ namespace QuanLyQuanNuoc.Models
         public virtual DbSet<FoodCategory> FoodCategories { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Table> Tables { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

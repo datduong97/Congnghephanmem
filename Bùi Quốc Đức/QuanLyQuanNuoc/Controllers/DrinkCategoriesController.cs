@@ -12,7 +12,7 @@ namespace QuanLyQuanNuoc.Controllers
 {
     public class DrinkCategoriesController : Controller
     {
-        private CNPM_QLNGKEntities1 db = new CNPM_QLNGKEntities1();
+        private CNPM_QLNGKEntities db = new CNPM_QLNGKEntities();
 
         // GET: DrinkCategories
         public ActionResult Index()
@@ -46,7 +46,7 @@ namespace QuanLyQuanNuoc.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idCategoryDrink,name")] DrinkCategory drinkCategory)
+        public ActionResult Create([Bind(Include = "IdCategoryDrink,CategoryDrinkName")] DrinkCategory drinkCategory)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace QuanLyQuanNuoc.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idCategoryDrink,name")] DrinkCategory drinkCategory)
+        public ActionResult Edit([Bind(Include = "IdCategoryDrink,CategoryDrinkName")] DrinkCategory drinkCategory)
         {
             if (ModelState.IsValid)
             {

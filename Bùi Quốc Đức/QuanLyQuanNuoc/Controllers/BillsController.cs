@@ -12,7 +12,7 @@ namespace QuanLyQuanNuoc.Controllers
 {
     public class BillsController : Controller
     {
-        private CNPM_QLNGKEntities1 db = new CNPM_QLNGKEntities1();
+        private CNPM_QLNGKEntities db = new CNPM_QLNGKEntities();
 
         // GET: Bills
         public ActionResult Index()
@@ -43,7 +43,7 @@ namespace QuanLyQuanNuoc.Controllers
             //ViewBag.idTable = billList;
             //tao đơn hàng
             //ViewBag.DateCheckIn = DateTime.Now;
-            ViewBag.idTable = new SelectList(db.Tables, "idTable", "name");
+            ViewBag.idTable = new SelectList(db.Tables, "IdTable", "TableName");
             Bill bl = new Bill();
             bl.DateCheckIn= DateTime.Now;
             bl.DateCheckOut = DateTime.Now;
@@ -58,7 +58,7 @@ namespace QuanLyQuanNuoc.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,DateCheckIn,DateCheckOut,idTable,status,discount,totalPrice")] Bill bill)
+        public ActionResult Create([Bind(Include = "IdBill,DateCheckIn,DateCheckOut,IdTable,Status,Discount,TotalPrice")] Bill bill)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace QuanLyQuanNuoc.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,DateCheckIn,DateCheckOut,idTable,status,discount,totalPrice")] Bill bill)
+        public ActionResult Edit([Bind(Include = "IdBill,DateCheckIn,DateCheckOut,IdTable,Status,Discount,TotalPrice")] Bill bill)
         {
             if (ModelState.IsValid)
             {

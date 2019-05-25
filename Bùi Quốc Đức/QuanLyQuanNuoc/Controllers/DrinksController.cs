@@ -12,7 +12,7 @@ namespace QuanLyQuanNuoc.Controllers
 {
     public class DrinksController : Controller
     {
-        private CNPM_QLNGKEntities1 db = new CNPM_QLNGKEntities1();
+        private CNPM_QLNGKEntities db = new CNPM_QLNGKEntities();
 
         // GET: Drinks
         public ActionResult Index()
@@ -39,7 +39,7 @@ namespace QuanLyQuanNuoc.Controllers
         // GET: Drinks/Create
         public ActionResult Create()
         {
-            ViewBag.idCategoryDrink = new SelectList(db.DrinkCategories, "idCategoryDrink", "name");
+            ViewBag.idCategoryDrink = new SelectList(db.DrinkCategories, "IdCategoryDrink", "CategoryDrinkName");
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace QuanLyQuanNuoc.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idDrink,name,idCategoryDrink,price,image")] Drink drink)
+        public ActionResult Create([Bind(Include = "IdDrink,DrinkName,IdCategoryDrink,Price,Image")] Drink drink)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace QuanLyQuanNuoc.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idCategoryDrink = new SelectList(db.DrinkCategories, "idCategoryDrink", "name", drink.idCategoryDrink);
+            ViewBag.idCategoryDrink = new SelectList(db.DrinkCategories, "IdCategoryDrink", "CategoryDrinkName", drink.IdCategoryDrink);
             return View(drink);
         }
 
@@ -73,7 +73,7 @@ namespace QuanLyQuanNuoc.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.idCategoryDrink = new SelectList(db.DrinkCategories, "idCategoryDrink", "name", drink.idCategoryDrink);
+            ViewBag.idCategoryDrink = new SelectList(db.DrinkCategories, "idCategoryDrink", "CategoryDrinkName", drink.IdCategoryDrink);
             return View(drink);
         }
 
@@ -82,7 +82,7 @@ namespace QuanLyQuanNuoc.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idDrink,name,idCategoryDrink,price,image")] Drink drink)
+        public ActionResult Edit([Bind(Include = "IdDrink,DrinkName,IdCategoryDrink,Price,Image")] Drink drink)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace QuanLyQuanNuoc.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.idCategoryDrink = new SelectList(db.DrinkCategories, "idCategoryDrink", "name", drink.idCategoryDrink);
+            ViewBag.idCategoryDrink = new SelectList(db.DrinkCategories, "IdCategoryDrink", "DrinkName", drink.IdCategoryDrink);
             return View(drink);
         }
 

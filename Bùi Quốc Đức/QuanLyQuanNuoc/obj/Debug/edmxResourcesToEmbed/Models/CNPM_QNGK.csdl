@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CNPM_QLNGKModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Bill">
+    <Key>
+      <PropertyRef Name="IdBill" />
+    </Key>
+    <Property Name="IdBill" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateCheckIn" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DateCheckOut" Type="DateTime" Precision="0" />
+    <Property Name="IdTable" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="Discount" Type="Int32" />
+    <Property Name="TotalPrice" Type="Double" />
+    <NavigationProperty Name="Table" Relationship="Self.FK_Bill_Table" FromRole="Bill" ToRole="Table" />
+    <NavigationProperty Name="BillInfoes" Relationship="Self.FK_BillInfo_Bill" FromRole="Bill" ToRole="BillInfo" />
+  </EntityType>
+  <EntityType Name="BillInfo">
+    <Key>
+      <PropertyRef Name="IdBillInfo" />
+    </Key>
+    <Property Name="IdBillInfo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdBill" Type="Int32" Nullable="false" />
+    <Property Name="IdFood" Type="Int32" Nullable="false" />
+    <Property Name="IdDrink" Type="Int32" />
+    <Property Name="Count" Type="Double" Nullable="false" />
+    <Property Name="IdEmp" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Bill" Relationship="Self.FK_BillInfo_Bill" FromRole="BillInfo" ToRole="Bill" />
+    <NavigationProperty Name="Drink" Relationship="Self.FK_BillInfo_Drink" FromRole="BillInfo" ToRole="Drink" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_BillInfo_Employees" FromRole="BillInfo" ToRole="Employees" />
+    <NavigationProperty Name="Food" Relationship="Self.FK_BillInfo_Food" FromRole="BillInfo" ToRole="Food" />
+  </EntityType>
+  <EntityType Name="BookedTable">
+    <Key>
+      <PropertyRef Name="idTable" />
+    </Key>
+    <Property Name="idTable" Type="Int32" Nullable="false" />
+    <Property Name="CustomerName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerPhone" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
+    <Property Name="CustomerAddress" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="BookDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="BookTimeStart" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="BookTimeEnd" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Drink">
+    <Key>
+      <PropertyRef Name="IdDrink" />
+    </Key>
+    <Property Name="IdDrink" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DrinkName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IdCategoryDrink" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
+    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BillInfoes" Relationship="Self.FK_BillInfo_Drink" FromRole="Drink" ToRole="BillInfo" />
+    <NavigationProperty Name="DrinkCategory" Relationship="Self.FK_Drink_DrinkCategory" FromRole="Drink" ToRole="DrinkCategory" />
+  </EntityType>
+  <EntityType Name="DrinkCategory">
+    <Key>
+      <PropertyRef Name="IdCategoryDrink" />
+    </Key>
+    <Property Name="IdCategoryDrink" Type="Int32" Nullable="false" />
+    <Property Name="CategoryDrinkName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Drinks" Relationship="Self.FK_Drink_DrinkCategory" FromRole="DrinkCategory" ToRole="Drink" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="IdEmp" />
+    </Key>
+    <Property Name="IdEmp" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="BillInfoes" Relationship="Self.FK_BillInfo_Employees" FromRole="Employees" ToRole="BillInfo" />
+  </EntityType>
+  <EntityType Name="Food">
+    <Key>
+      <PropertyRef Name="IdFood" />
+    </Key>
+    <Property Name="IdFood" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FoodName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IdCategoryFood" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
+    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BillInfoes" Relationship="Self.FK_BillInfo_Food" FromRole="Food" ToRole="BillInfo" />
+    <NavigationProperty Name="FoodCategory" Relationship="Self.FK_Food_FoodCategory" FromRole="Food" ToRole="FoodCategory" />
+  </EntityType>
+  <EntityType Name="FoodCategory">
+    <Key>
+      <PropertyRef Name="IdCategoryFood" />
+    </Key>
+    <Property Name="IdCategoryFood" Type="Int32" Nullable="false" />
+    <Property Name="CategoryFoodName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Foods" Relationship="Self.FK_Food_FoodCategory" FromRole="FoodCategory" ToRole="Food" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Table">
+    <Key>
+      <PropertyRef Name="IdTable" />
+    </Key>
+    <Property Name="IdTable" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TableName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Bills" Relationship="Self.FK_Bill_Table" FromRole="Table" ToRole="Bill" />
+  </EntityType>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Username" />
+      <PropertyRef Name="DisplayName" />
+      <PropertyRef Name="Password" />
+      <PropertyRef Name="Type" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Type" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Bill_Table">
+    <End Role="Table" Type="Self.Table" Multiplicity="1" />
+    <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Table">
+        <PropertyRef Name="IdTable" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="IdTable" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BillInfo_Bill">
+    <End Role="Bill" Type="Self.Bill" Multiplicity="1" />
+    <End Role="BillInfo" Type="Self.BillInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bill">
+        <PropertyRef Name="IdBill" />
+      </Principal>
+      <Dependent Role="BillInfo">
+        <PropertyRef Name="IdBill" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BillInfo_Drink">
+    <End Role="Drink" Type="Self.Drink" Multiplicity="0..1" />
+    <End Role="BillInfo" Type="Self.BillInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Drink">
+        <PropertyRef Name="IdDrink" />
+      </Principal>
+      <Dependent Role="BillInfo">
+        <PropertyRef Name="IdDrink" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BillInfo_Employees">
+    <End Role="Employees" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="BillInfo" Type="Self.BillInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="IdEmp" />
+      </Principal>
+      <Dependent Role="BillInfo">
+        <PropertyRef Name="IdEmp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BillInfo_Food">
+    <End Role="Food" Type="Self.Food" Multiplicity="1" />
+    <End Role="BillInfo" Type="Self.BillInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Food">
+        <PropertyRef Name="IdFood" />
+      </Principal>
+      <Dependent Role="BillInfo">
+        <PropertyRef Name="IdFood" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Drink_DrinkCategory">
+    <End Role="DrinkCategory" Type="Self.DrinkCategory" Multiplicity="1" />
+    <End Role="Drink" Type="Self.Drink" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DrinkCategory">
+        <PropertyRef Name="IdCategoryDrink" />
+      </Principal>
+      <Dependent Role="Drink">
+        <PropertyRef Name="IdCategoryDrink" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Food_FoodCategory">
+    <End Role="FoodCategory" Type="Self.FoodCategory" Multiplicity="1" />
+    <End Role="Food" Type="Self.Food" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FoodCategory">
+        <PropertyRef Name="IdCategoryFood" />
+      </Principal>
+      <Dependent Role="Food">
+        <PropertyRef Name="IdCategoryFood" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CNPM_QLNGKEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bills" EntityType="Self.Bill" />
+    <EntitySet Name="BillInfoes" EntityType="Self.BillInfo" />
+    <EntitySet Name="BookedTables" EntityType="Self.BookedTable" />
+    <EntitySet Name="Drinks" EntityType="Self.Drink" />
+    <EntitySet Name="DrinkCategories" EntityType="Self.DrinkCategory" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="Foods" EntityType="Self.Food" />
+    <EntitySet Name="FoodCategories" EntityType="Self.FoodCategory" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Tables" EntityType="Self.Table" />
+    <EntitySet Name="Accounts" EntityType="Self.Account" />
+    <AssociationSet Name="FK_Bill_Table" Association="Self.FK_Bill_Table">
+      <End Role="Table" EntitySet="Tables" />
+      <End Role="Bill" EntitySet="Bills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BillInfo_Bill" Association="Self.FK_BillInfo_Bill">
+      <End Role="Bill" EntitySet="Bills" />
+      <End Role="BillInfo" EntitySet="BillInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BillInfo_Drink" Association="Self.FK_BillInfo_Drink">
+      <End Role="Drink" EntitySet="Drinks" />
+      <End Role="BillInfo" EntitySet="BillInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BillInfo_Employees" Association="Self.FK_BillInfo_Employees">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="BillInfo" EntitySet="BillInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BillInfo_Food" Association="Self.FK_BillInfo_Food">
+      <End Role="Food" EntitySet="Foods" />
+      <End Role="BillInfo" EntitySet="BillInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Drink_DrinkCategory" Association="Self.FK_Drink_DrinkCategory">
+      <End Role="DrinkCategory" EntitySet="DrinkCategories" />
+      <End Role="Drink" EntitySet="Drinks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Food_FoodCategory" Association="Self.FK_Food_FoodCategory">
+      <End Role="FoodCategory" EntitySet="FoodCategories" />
+      <End Role="Food" EntitySet="Foods" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(CNPM_QLNGKModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(CNPM_QLNGKModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

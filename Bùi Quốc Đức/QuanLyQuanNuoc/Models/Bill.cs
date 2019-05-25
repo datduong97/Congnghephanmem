@@ -14,12 +14,22 @@ namespace QuanLyQuanNuoc.Models
     
     public partial class Bill
     {
-        public int id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Bill()
+        {
+            this.BillInfoes = new HashSet<BillInfo>();
+        }
+    
+        public int IdBill { get; set; }
         public System.DateTime DateCheckIn { get; set; }
         public Nullable<System.DateTime> DateCheckOut { get; set; }
-        public int idTable { get; set; }
-        public int status { get; set; }
-        public Nullable<int> discount { get; set; }
-        public Nullable<double> totalPrice { get; set; }
+        public int IdTable { get; set; }
+        public int Status { get; set; }
+        public Nullable<int> Discount { get; set; }
+        public Nullable<double> TotalPrice { get; set; }
+    
+        public virtual Table Table { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BillInfo> BillInfoes { get; set; }
     }
 }

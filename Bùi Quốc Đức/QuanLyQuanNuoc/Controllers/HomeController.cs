@@ -9,7 +9,7 @@ namespace QuanLyQuanNuoc.Controllers
 {
     public class HomeController : Controller
     {
-        private CNPM_QLNGKEntities1 db = new CNPM_QLNGKEntities1();
+        private CNPM_QLNGKEntities db = new CNPM_QLNGKEntities();
         public ActionResult Index()
         {
             return View();

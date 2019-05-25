@@ -12,7 +12,7 @@ namespace QuanLyQuanNuoc.Controllers
 {
     public class FoodCategoriesController : Controller
     {
-        private CNPM_QLNGKEntities1 db = new CNPM_QLNGKEntities1();
+        private CNPM_QLNGKEntities db = new CNPM_QLNGKEntities();
 
         // GET: FoodCategories
         public ActionResult Index()
@@ -46,7 +46,7 @@ namespace QuanLyQuanNuoc.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idCategoryFood,name")] FoodCategory foodCategory)
+        public ActionResult Create([Bind(Include = "IdCategoryFood,CategoryFoodName")] FoodCategory foodCategory)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace QuanLyQuanNuoc.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idCategoryFood,name")] FoodCategory foodCategory)
+        public ActionResult Edit([Bind(Include = "IdCategoryFood,CategoryFoodName")] FoodCategory foodCategory)
         {
             if (ModelState.IsValid)
             {

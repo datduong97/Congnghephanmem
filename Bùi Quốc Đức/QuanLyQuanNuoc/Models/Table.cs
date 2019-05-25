@@ -14,8 +14,17 @@ namespace QuanLyQuanNuoc.Models
     
     public partial class Table
     {
-        public int idTable { get; set; }
-        public string name { get; set; }
-        public bool status { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Table()
+        {
+            this.Bills = new HashSet<Bill>();
+        }
+    
+        public int IdTable { get; set; }
+        public string TableName { get; set; }
+        public bool Status { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Bill> Bills { get; set; }
     }
 }
