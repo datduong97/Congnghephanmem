@@ -5,21 +5,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Thông tin</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Thêm mới", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Address)
+            @Html.DisplayNameFor(model => model.address)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Phone)
+            @Html.DisplayNameFor(model => model.phone)
         </th>
         <th></th>
     </tr>
@@ -27,18 +27,18 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(modelItem => item.name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Address)
+            @Html.DisplayFor(modelItem => item.address)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Phone)
+            @Html.DisplayFor(modelItem => item.phone)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdEmp }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdEmp }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdEmp })
+            @Html.ActionLink("Sửa", "Edit", new { id=item.idEmp }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id=item.idEmp }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.idEmp })
         </td>
     </tr>
 }

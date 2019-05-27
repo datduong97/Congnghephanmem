@@ -14,12 +14,16 @@ namespace QuanLyQuanNuoc.Models
     
     public partial class BookedTable
     {
-        public int idTable { get; set; }
+        public int id { get; set; }
+        public Nullable<int> idTable { get; set; }
         public string CustomerName { get; set; }
         public string CustomerPhone { get; set; }
         public string CustomerAddress { get; set; }
         public string BookDate { get; set; }
         public string BookTimeStart { get; set; }
         public string BookTimeEnd { get; set; }
+    
+        public virtual Table Table { get; set; }
+        public virtual Table u { get; set; }
     }
 }

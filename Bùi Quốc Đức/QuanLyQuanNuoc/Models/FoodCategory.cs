@@ -20,8 +20,8 @@ namespace QuanLyQuanNuoc.Models
             this.Foods = new HashSet<Food>();
         }
     
-        public int IdCategoryFood { get; set; }
-        public string CategoryFoodName { get; set; }
+        public int idCategoryFood { get; set; }
+        public string name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Food> Foods { get; set; }

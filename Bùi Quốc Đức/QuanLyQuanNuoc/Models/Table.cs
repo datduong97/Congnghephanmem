@@ -18,13 +18,19 @@ namespace QuanLyQuanNuoc.Models
         public Table()
         {
             this.Bills = new HashSet<Bill>();
+            this.BookedTables = new HashSet<BookedTable>();
+            this.BookedTables1 = new HashSet<BookedTable>();
         }
     
-        public int IdTable { get; set; }
-        public string TableName { get; set; }
-        public bool Status { get; set; }
+        public int idTable { get; set; }
+        public string name { get; set; }
+        public bool status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bill> Bills { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BookedTable> BookedTables { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BookedTable> BookedTables1 { get; set; }
     }
 }

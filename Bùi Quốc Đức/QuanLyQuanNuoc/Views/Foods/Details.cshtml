@@ -1,58 +1,51 @@
 ﻿@model QuanLyQuanNuoc.Models.Food
 
 @{
-    Layout = null;
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
+<h2>Chi tiết</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
-    <div>
-        <h4>Food</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.FoodName)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.FoodName)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Price)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Price)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Image)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Image)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.FoodCategory.CategoryFoodName)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.FoodCategory.CategoryFoodName)
-            </dd>
-    
-        </dl>
-    </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.IdFood }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-</body>
-</html>
+<div>
+   @* <h4>Food</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FoodCategory.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FoodCategory.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.idFood }) |
+    @Html.ActionLink("Trở về", "Index")
+</p>

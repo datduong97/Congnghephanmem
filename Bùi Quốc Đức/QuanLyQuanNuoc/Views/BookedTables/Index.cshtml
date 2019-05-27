@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Thông tin</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Thêm mới", "Create")
 </p>
 <table class="table">
     <tr>
@@ -30,6 +30,9 @@
         <th>
             @Html.DisplayNameFor(model => model.BookTimeEnd)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Table.name)
+        </th>        
         <th></th>
     </tr>
 
@@ -54,9 +57,12 @@
             @Html.DisplayFor(modelItem => item.BookTimeEnd)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idTable }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idTable }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idTable })
+            @Html.DisplayFor(modelItem => item.Table.name)
+        </td>        
+        <td>
+            @Html.ActionLink("Sửa", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id=item.id }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.id })
         </td>
     </tr>
 }

@@ -12,13 +12,15 @@ namespace QuanLyQuanNuoc.Controllers
 {
     public class BookedTablesController : Controller
     {
-        private CNPM_QLNGKEntities db = new CNPM_QLNGKEntities();
+        private CNPM_QLNGKEntities1 db = new CNPM_QLNGKEntities1();
 
         // GET: BookedTables
         public ActionResult Index()
         {
-            return View(db.BookedTables.ToList());
+            var bookedTables = db.BookedTables.Include(b => b.Table);
+            return View(bookedTables.ToList());
         }
+        //csdl m có id chưa;lloi là dúng
 
         // GET: BookedTables/Details/5
         public ActionResult Details(int? id)
@@ -38,7 +40,9 @@ namespace QuanLyQuanNuoc.Controllers
         // GET: BookedTables/Create
         public ActionResult Create()
         {
+            ViewBag.idTable = new SelectList(db.Tables, "idTable", "name");
             return View();
+            //return View();
         }
 
         // POST: BookedTables/Create
@@ -46,7 +50,7 @@ namespace QuanLyQuanNuoc.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idTable,CustomerName,CustomerPhone,CustomerAddress,BookDate,BookTimeStart,BookTimeEnd")] BookedTable bookedTable)
+        public ActionResult Create([Bind(Include = "id,idTable,CustomerName,CustomerPhone,CustomerAddress,BookDate,BookTimeStart,BookTimeEnd")] BookedTable bookedTable)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +59,7 @@ namespace QuanLyQuanNuoc.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.idTable = new SelectList(db.Tables, "idTable", "name", bookedTable.idTable);            
             return View(bookedTable);
         }
 
@@ -69,8 +74,7 @@ namespace QuanLyQuanNuoc.Controllers
             if (bookedTable == null)
             {
                 return HttpNotFound();
-            }
-            ViewBag.idTable = new SelectList(db.Tables, "idTable", "name", bookedTable.idTable);
+            }            
             ViewBag.idTable = new SelectList(db.Tables, "idTable", "name", bookedTable.idTable);
             return View(bookedTable);
         }
@@ -80,16 +84,15 @@ namespace QuanLyQuanNuoc.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idTable,CustomerName,CustomerPhone,CustomerAddress,BookDate,BookTimeStart,BookTimeEnd")] BookedTable bookedTable)
+        public ActionResult Edit([Bind(Include = "id,idTable,CustomerName,CustomerPhone,CustomerAddress,BookDate,BookTimeStart,BookTimeEnd")] BookedTable bookedTable)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(bookedTable).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
-            ViewBag.idTable = new SelectList(db.Tables, "idTable", "TableName", bookedTable.idTable);
-            ViewBag.idTable = new SelectList(db.Tables, "idTable", "TableName", bookedTable.idTable);
+            }            
+            ViewBag.idTable = new SelectList(db.Tables, "idTable", "name", bookedTable.idTable);
             return View(bookedTable);
         }
 

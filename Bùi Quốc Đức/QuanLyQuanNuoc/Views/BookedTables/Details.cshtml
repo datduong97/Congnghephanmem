@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Chi tiết</h2>
 
 <div>
-    <h4>BookedTable</h4>
+    @*<h4>BookedTable</h4>*@
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -59,9 +59,17 @@
             @Html.DisplayFor(model => model.BookTimeEnd)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Table.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Table.name)
+        </dd>      
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.idTable }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Trở về", "Index")
 </p>

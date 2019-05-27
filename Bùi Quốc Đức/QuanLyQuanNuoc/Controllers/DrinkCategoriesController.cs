@@ -9,10 +9,10 @@ using System.Web.Mvc;
 using QuanLyQuanNuoc.Models;
 
 namespace QuanLyQuanNuoc.Controllers
-{
+{    
     public class DrinkCategoriesController : Controller
     {
-        private CNPM_QLNGKEntities db = new CNPM_QLNGKEntities();
+        private CNPM_QLNGKEntities1 db = new CNPM_QLNGKEntities1();
 
         // GET: DrinkCategories
         public ActionResult Index()
@@ -46,11 +46,11 @@ namespace QuanLyQuanNuoc.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdCategoryDrink,CategoryDrinkName")] DrinkCategory drinkCategory)
+        public ActionResult Create([Bind(Include = "idCategoryDrink,name")] DrinkCategory drinkCategory)
         {
-            int idcare = Convert.ToInt32(Request["IdCategoryDrink"]);
-            var ds = db.DrinkCategories.Where(x => x.IdCategoryDrink == idcare);
-            if (ds.Count() > 0)
+            int idcare = Convert.ToInt32(Request["idCategoryDrink"]);
+            var ds = db.DrinkCategories.Where(x => x.idCategoryDrink == idcare);
+            if (ds.Count()>0 )
             {
                 ModelState.AddModelError("", "Mã danh mục đã tồn tại");
             }
@@ -84,7 +84,7 @@ namespace QuanLyQuanNuoc.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdCategoryDrink,CategoryDrinkName")] DrinkCategory drinkCategory)
+        public ActionResult Edit([Bind(Include = "idCategoryDrink,name")] DrinkCategory drinkCategory)
         {
             if (ModelState.IsValid)
             {

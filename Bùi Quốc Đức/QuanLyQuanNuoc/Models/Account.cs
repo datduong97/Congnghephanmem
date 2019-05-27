@@ -14,10 +14,10 @@ namespace QuanLyQuanNuoc.Models
     
     public partial class Account
     {
-        public int Id { get; set; }
+        public int id { get; set; }
         public string Username { get; set; }
         public string DisplayName { get; set; }
         public string Password { get; set; }
-        public int Type { get; set; }
+        public Nullable<int> Type { get; set; }
     }
 }

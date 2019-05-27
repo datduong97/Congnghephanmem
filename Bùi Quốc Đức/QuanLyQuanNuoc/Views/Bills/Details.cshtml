@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Chi tiết</h2>
 
 <div>
-    <h4>Bill</h4>
+    @*<h4>Bill</h4>*@
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -28,40 +28,32 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IdTable)
+            @Html.DisplayNameFor(model => model.status)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IdTable)
+            @Html.DisplayFor(model => model.status)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Status)
+            @Html.DisplayNameFor(model => model.discount)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Status)
+            @Html.DisplayFor(model => model.discount)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Discount)
+            @Html.DisplayNameFor(model => model.Table.name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Discount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TotalPrice)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TotalPrice)
+            @Html.DisplayFor(model => model.Table.name)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdBill }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.idBill }) |
+    @Html.ActionLink("Trở về", "Index")
 </p>

@@ -20,11 +20,11 @@ namespace QuanLyQuanNuoc.Models
             this.BillInfoes = new HashSet<BillInfo>();
         }
     
-        public int IdFood { get; set; }
-        public string FoodName { get; set; }
-        public int IdCategoryFood { get; set; }
-        public int Price { get; set; }
-        public string Image { get; set; }
+        public int idFood { get; set; }
+        public string name { get; set; }
+        public int idCategoryFood { get; set; }
+        public int price { get; set; }
+        public string image { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillInfo> BillInfoes { get; set; }
