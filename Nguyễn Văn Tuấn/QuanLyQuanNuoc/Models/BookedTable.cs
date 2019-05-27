@@ -16,17 +16,24 @@ namespace QuanLyQuanNuoc.Models
     public partial class BookedTable
     {
         public int id { get; set; }
+        [Required]
         public Nullable<int> idTable { get; set; }
         [Display(Name = "Tên khách hàng")]
+        [Required]
         public string CustomerName { get; set; }
         [Display(Name = "Số điện thoại")]
+        [Required]
         public string CustomerPhone { get; set; }
         [Display(Name = "Địa chỉ")]
+        [Required]
         public string CustomerAddress { get; set; }
         [Display(Name = "Ngày đặt bàn")]
+        [Required]
         public string BookDate { get; set; }
         [Display(Name = "Thời gian đặt")]
         public string BookTimeStart { get; set; }
+        [Display(Name = "Thời gian kết thúc")]
+        [Required]
         public string BookTimeEnd { get; set; }
     
         public virtual Table Table { get; set; }
