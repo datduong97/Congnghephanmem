@@ -15,13 +15,45 @@
         .menuitem{
             background-color:#108Dc5;            
         }
-        a {
-            color: white;            
+        a{
+            color:#fff;
         }
+        .col-list-view > p > a, .col-list-view>table>tbody>tr>td>a {
+            color: green;
+        }
+            .col-list-view > p > a:hover, .col-list-view > table > tbody > tr > td > a:hover{
+                color:red;
+
+            }
             a:hover {
                 color: gray;
-                text-decoration:none;
+                text-decoration: none;
             }
+        .navbar-header{
+            position:relative;
+            width:100% !important;
+            height:50px;
+        }
+
+        .navbar-header>a{
+            position:absolute;
+            left:50%;
+            margin:auto;
+            transform:translateX(-50%);
+            top:0;
+            color: #fff !important;
+            font-size: 30px;
+        }
+            .navbar-header > .navbar-buttons {
+                position: relative;
+                
+            }
+
+            .navbar-header > .navbar-buttons >ul{
+                position:absolute;
+                right:0;
+            }
+
     </style>
 </head>
 <body >
@@ -66,10 +98,10 @@
         </div>
     </div>
     <div class="container-fluid body-content">
-        <div class="row " style="height:800px">
+        <div class="row " style="height:800px" color:whitea>
             <div class="col-sm-2 menuitem">
                 <div class="navbar">
-                    <ul class="navbar-nav text-center" style="margin-top:20px;">
+                    <ul class="navbar-nav text-center" style="margin-top:20px;color:white">
                         <li class="nav nav-list ">@Html.ActionLink("Trang chủ", "Index", "Home")</li>
                         <li class="nav nav-list ">@Html.ActionLink("Thực đơn món ăn", "Index", "Foods")</li>
                         <li class="nav nav-list ">@Html.ActionLink("Thực đơn đồ uống", "Index", "Drinks")</li>
@@ -83,7 +115,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-sm-10">
+            <div class="col-sm-10 col-list-view">
                 @RenderBody()
             </div>
         </div>

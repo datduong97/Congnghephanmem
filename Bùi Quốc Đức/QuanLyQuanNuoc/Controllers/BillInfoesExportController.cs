@@ -68,10 +68,10 @@ namespace QuanLyQuanNuoc.Controllers
             gv.HeaderRow.Cells[1].Text = "mã hóa đơn";
             gv.HeaderRow.Cells[2].Text = "Mã thức ăn";
             gv.HeaderRow.Cells[3].Text = "Số lượng thức ăn";
-            gv.HeaderRow.Cells[4].Text = "Mã Đồ uống";
+            gv.HeaderRow.Cells[4].Text = "Mã nhân viên";
             gv.HeaderRow.Cells[5].Text = "Số lượng đồ uống";
             gv.HeaderRow.Cells[6].Text = "Tổng tiền";
-            gv.HeaderRow.Cells[7].Text = "Mã nhân viên";
+            gv.HeaderRow.Cells[7].Text = "Mã Đồ uống";
 
 
 
