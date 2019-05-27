@@ -10,9 +10,10 @@ using QuanLyQuanNuoc.Models;
 
 namespace QuanLyQuanNuoc.Controllers
 {
+   
     public class FoodCategoriesController : Controller
     {
-        private CNPM_QLNGKEntities db = new CNPM_QLNGKEntities();
+        private CNPM_QLNGKEntities1 db = new CNPM_QLNGKEntities1();
 
         // GET: FoodCategories
         public ActionResult Index()
@@ -46,10 +47,10 @@ namespace QuanLyQuanNuoc.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdCategoryFood,CategoryFoodName")] FoodCategory foodCategory)
+        public ActionResult Create([Bind(Include = "idCategoryFood,name")] FoodCategory foodCategory)
         {
-            int idcare = Convert.ToInt32(Request["IdCategoryFood"]);
-            var ds = db.FoodCategories.Where(x => x.IdCategoryFood == idcare);
+            int idcare = Convert.ToInt32(Request["idCategoryFood"]);
+            var ds = db.FoodCategories.Where(x => x.idCategoryFood == idcare);
             if (ds.Count() > 0)
             {
                 ModelState.AddModelError("", "Mã danh mục đã tồn tại");
@@ -84,7 +85,7 @@ namespace QuanLyQuanNuoc.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdCategoryFood,CategoryFoodName")] FoodCategory foodCategory)
+        public ActionResult Edit([Bind(Include = "idCategoryFood,name")] FoodCategory foodCategory)
         {
             if (ModelState.IsValid)
             {

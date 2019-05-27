@@ -12,12 +12,13 @@ namespace QuanLyQuanNuoc.Controllers
 {
     public class BillsController : Controller
     {
-        private CNPM_QLNGKEntities db = new CNPM_QLNGKEntities();
+        private CNPM_QLNGKEntities1 db = new CNPM_QLNGKEntities1();
 
         // GET: Bills
         public ActionResult Index()
         {
-            return View(db.Bills.ToList());
+            var bills = db.Bills.Include(b => b.Table);
+            return View(bills.ToList());
         }
 
         // GET: Bills/Details/5
@@ -38,19 +39,8 @@ namespace QuanLyQuanNuoc.Controllers
         // GET: Bills/Create
         public ActionResult Create()
         {
-            //List<Bill> bill = db.Bills.ToList();
-            //SelectList billList=new SelectList(db.Bills, "idTable", "Ten");
-            //ViewBag.idTable = billList;
-            //tao đơn hàng
-            //ViewBag.DateCheckIn = DateTime.Now;
-            ViewBag.idTable = new SelectList(db.Tables, "IdTable", "TableName");
-            Bill bl = new Bill();
-            bl.DateCheckIn= DateTime.Now;
-            bl.DateCheckOut = DateTime.Now;
-
-            
-            return View(bl);
-            //return View();
+            ViewBag.idTable = new SelectList(db.Tables, "idTable", "name");
+            return View();
         }
 
         // POST: Bills/Create
@@ -58,7 +48,7 @@ namespace QuanLyQuanNuoc.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdBill,DateCheckIn,DateCheckOut,IdTable,Status,Discount,TotalPrice")] Bill bill)
+        public ActionResult Create([Bind(Include = "idBill,DateCheckIn,DateCheckOut,idTable,status,discount,totalPrice")] Bill bill)
         {
             if (ModelState.IsValid)
             {
@@ -67,6 +57,7 @@ namespace QuanLyQuanNuoc.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.idTable = new SelectList(db.Tables, "idTable", "name", bill.idTable);
             return View(bill);
         }
 
@@ -82,6 +73,7 @@ namespace QuanLyQuanNuoc.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.idTable = new SelectList(db.Tables, "idTable", "name", bill.idTable);
             return View(bill);
         }
 
@@ -90,7 +82,7 @@ namespace QuanLyQuanNuoc.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdBill,DateCheckIn,DateCheckOut,IdTable,Status,Discount,TotalPrice")] Bill bill)
+        public ActionResult Edit([Bind(Include = "idBill,DateCheckIn,DateCheckOut,idTable,status,discount,totalPrice")] Bill bill)
         {
             if (ModelState.IsValid)
             {
@@ -98,6 +90,7 @@ namespace QuanLyQuanNuoc.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.idTable = new SelectList(db.Tables, "idTable", "name", bill.idTable);
             return View(bill);
         }
 

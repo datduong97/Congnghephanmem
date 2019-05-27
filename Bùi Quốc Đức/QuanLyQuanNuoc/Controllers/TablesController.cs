@@ -12,7 +12,7 @@ namespace QuanLyQuanNuoc.Controllers
 {
     public class TablesController : Controller
     {
-        private CNPM_QLNGKEntities db = new CNPM_QLNGKEntities();
+        private CNPM_QLNGKEntities1 db = new CNPM_QLNGKEntities1();
 
         // GET: Tables
         public ActionResult Index()
@@ -46,7 +46,7 @@ namespace QuanLyQuanNuoc.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdTable,TableName,Status")] Table table)
+        public ActionResult Create([Bind(Include = "idTable,name,status")] Table table)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace QuanLyQuanNuoc.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdTable,TableName,Status")] Table table)
+        public ActionResult Edit([Bind(Include = "idTable,name,status")] Table table)
         {
             if (ModelState.IsValid)
             {

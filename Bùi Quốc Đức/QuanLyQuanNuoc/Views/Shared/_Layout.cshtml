@@ -13,7 +13,7 @@
     @Scripts.Render("~/bundles/modernizr")
     <style>
         .menuitem{
-            background-color:#333333;            
+            background-color:#108Dc5;            
         }
         a {
             color: white;            
@@ -29,13 +29,20 @@
         <div class="container">
             <div class="navbar-header">
                 @Html.ActionLink("Quản lý quán nước", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                <div class="navbar-buttons navbar-header pull-right" role="navigation">
+                <div class="navbar-buttons navbar-header pull-right " role="navigation">
                     <ul class="nav ace-nav">
                         <li class="light-blue">
                             <a data-toggle="dropdown" href="#" class="dropdown-toggle">                                
                                 <span class="user-info">
                                     <small>Xin chào,</small>
-                                    @Session["Displayname"].ToString()
+                                    @if (@Session["Username"] == null)
+                                    {
+                                        Response.Redirect("~/Login/Login");
+                                    }
+                                        else
+                                        {
+                                            @Session["Displayname"].ToString()
+                                                                            }
                                 </span>
                                 <i class="ace-icon fa fa-caret-down"></i>
                             </a>
@@ -49,7 +56,7 @@
                                 <li class="divider"></li>
 
                                 <li>
-                                    @Html.ActionLink("Đăng xuất", "Logout", "Home")                                                                                                                    
+                                    @Html.ActionLink("Đăng xuất", "Logout", "Login")                                                                                                                    
                                 </li>
                             </ul>
                         </li>
@@ -58,30 +65,31 @@
             </div>
         </div>
     </div>
+    
     <div class="container-fluid body-content">
         <div class="row " style="height:800px">
             <div class="col-sm-2 menuitem">
                 <div class="navbar">
                     <ul class="navbar-nav text-center" style="margin-top:20px;">
-                        <li class="nav nav-list ">@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li class="nav nav-list ">@Html.ActionLink("About", "About", "Home")</li>
-                        <li class="nav nav-list ">@Html.ActionLink("Contact", "Contact", "Home")</li>
-                        <li class="nav nav-list ">@Html.ActionLink("Foods", "Index", "Foods")</li>
-                        <li class="nav nav-list ">@Html.ActionLink("Drinks", "Index", "Drinks")</li>
-                        <li class="nav nav-list ">@Html.ActionLink("DrinksCategories", "Index", "DrinkCategories")</li>
-                        <li class="nav nav-list ">@Html.ActionLink("FoodsCategories", "Index", "FoodCategories")</li>
-                        <li class="nav nav-list ">@Html.ActionLink("BookedTables", "Index", "BookedTables")</li>
-                        <li class="nav nav-list ">@Html.ActionLink("Account", "Index", "Accounts")</li>
-                        <li class="nav nav-list ">@Html.ActionLink("Tables", "Index", "Tables")</li>
-                        <li class="nav nav-list ">@Html.ActionLink("Employees", "Index", "Employees")</li>
-                        <li class="nav nav-list ">@Html.ActionLink("Thống kê", "Index", "Bills")</li>
+                        <li class="nav nav-list ">@Html.ActionLink("Trang chủ", "Index", "Home")</li>
+                        <li class="nav nav-list ">@Html.ActionLink("Thực đơn món ăn", "Index", "Foods")</li>
+                        <li class="nav nav-list ">@Html.ActionLink("Thực đơn đồ uống", "Index", "Drinks")</li>
+                        <li class="nav nav-list ">@Html.ActionLink("Danh mục đồ uống", "Index", "DrinkCategories")</li>
+                        <li class="nav nav-list ">@Html.ActionLink("Danh mục món ăn", "Index", "FoodCategories")</li>
+                        <li class="nav nav-list ">@Html.ActionLink("Đặt bàn", "Index", "BookedTables")</li>
+                        <li class="nav nav-list ">@Html.ActionLink("Tài khoản", "Index", "Accounts")</li>
+                        <li class="nav nav-list ">@Html.ActionLink("Bàn", "Index", "Tables")</li>
+                        <li class="nav nav-list ">@Html.ActionLink("Nhân viên", "Index", "Employees")</li>
+                        <li class="nav nav-list ">@Html.ActionLink("Đơn hàng", "Index", "Bills")</li>
+                        <li class="nav nav-list ">@Html.ActionLink("Chi tiết đơn hàng", "Index", "BillInfoes")</li>
+                        <li class="nav nav-list ">@Html.ActionLink("Thống kê", "Index", "Report")</li>
                     </ul>
                 </div>
             </div>
             <div class="col-sm-10">
+                <h1>Chào mừng đến @Session["Displayname"].ToString() đến với Quán Nước Giải Khát</h1>
                 @RenderBody()
             </div>
-
         </div>
         <footer style="text-align:center">
             <p>&copy; @DateTime.Now.Year - Quản lý quán nước</p>

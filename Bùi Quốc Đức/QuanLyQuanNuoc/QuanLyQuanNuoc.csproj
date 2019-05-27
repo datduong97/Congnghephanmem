@@ -61,6 +61,12 @@
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="ReportViewerForMvc, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Chaso.ReportViewerForMvc.1.1.1.1\lib\net461\ReportViewerForMvc.dll</HintPath>
     </Reference>
@@ -141,6 +147,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
+    <Compile Include="Controllers\BillInfoesController.cs" />
+    <Compile Include="Controllers\BillInfoesExportController.cs" />
     <Compile Include="Controllers\BillsController.cs" />
     <Compile Include="Controllers\BookedTablesController.cs" />
     <Compile Include="Controllers\DrinkCategoriesController.cs" />
@@ -149,63 +157,65 @@
     <Compile Include="Controllers\FoodCategoriesController.cs" />
     <Compile Include="Controllers\FoodsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\TablesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.cs">
-      <DependentUpon>CNPM_QNGK.tt</DependentUpon>
+      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Bill.cs">
-      <DependentUpon>CNPM_QNGK.tt</DependentUpon>
+      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BillInfo.cs">
-      <DependentUpon>CNPM_QNGK.tt</DependentUpon>
+      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BookedTable.cs">
-      <DependentUpon>CNPM_QNGK.tt</DependentUpon>
+      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CNPM_QNGK.Context.cs">
+    <Compile Include="Models\CNPM_QLNGK.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CNPM_QNGK.Context.tt</DependentUpon>
+      <DependentUpon>CNPM_QLNGK.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CNPM_QNGK.cs">
+    <Compile Include="Models\CNPM_QLNGK.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CNPM_QNGK.tt</DependentUpon>
+      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CNPM_QNGK.Designer.cs">
+    <Compile Include="Models\CNPM_QLNGK.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CNPM_QNGK.edmx</DependentUpon>
+      <DependentUpon>CNPM_QLNGK.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Drink.cs">
-      <DependentUpon>CNPM_QNGK.tt</DependentUpon>
+      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DrinkCategory.cs">
-      <DependentUpon>CNPM_QNGK.tt</DependentUpon>
+      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Employee.cs">
-      <DependentUpon>CNPM_QNGK.tt</DependentUpon>
+      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Food.cs">
-      <DependentUpon>CNPM_QNGK.tt</DependentUpon>
+      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FoodCategory.cs">
-      <DependentUpon>CNPM_QNGK.tt</DependentUpon>
+      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>CNPM_QNGK.tt</DependentUpon>
+      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>CNPM_QNGK.tt</DependentUpon>
+      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>CNPM_QNGK.tt</DependentUpon>
+      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Table.cs">
-      <DependentUpon>CNPM_QNGK.tt</DependentUpon>
+      <DependentUpon>CNPM_QLNGK.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportViewer\DataSet1.Designer.cs">
@@ -214,34 +224,42 @@
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="Views\Shared\WebUserControl1.ascx.cs">
+      <DependentUpon>ReportUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Shared\WebUserControl1.ascx.designer.cs">
+      <DependentUpon>ReportUserControl.ascx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\CNPM_QNGK.Context.tt">
+    <Content Include="Models\CNPM_QLNGK.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CNPM_QNGK.edmx</DependentUpon>
-      <LastGenOutput>CNPM_QNGK.Context.cs</LastGenOutput>
+      <DependentUpon>CNPM_QLNGK.edmx</DependentUpon>
+      <LastGenOutput>CNPM_QLNGK.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\CNPM_QNGK.tt">
+    <Content Include="Models\CNPM_QLNGK.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CNPM_QNGK.edmx</DependentUpon>
-      <LastGenOutput>CNPM_QNGK.cs</LastGenOutput>
+      <DependentUpon>CNPM_QLNGK.edmx</DependentUpon>
+      <LastGenOutput>CNPM_QLNGK.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\CNPM_QNGK.edmx">
+    <EntityDeploy Include="Models\CNPM_QLNGK.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CNPM_QNGK.Designer.cs</LastGenOutput>
+      <LastGenOutput>CNPM_QLNGK.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\CNPM_QNGK.edmx.diagram">
-      <DependentUpon>CNPM_QNGK.edmx</DependentUpon>
+    <Content Include="Models\CNPM_QLNGK.edmx.diagram">
+      <DependentUpon>CNPM_QLNGK.edmx</DependentUpon>
     </Content>
     <Content Include="ReportViewer\DataSet1.xsc">
       <DependentUpon>DataSet1.xsd</DependentUpon>
@@ -278,6 +296,7 @@
     <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Views\Shared\ReportUserControl.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -291,9 +310,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Tables\Create.cshtml" />
     <Content Include="Views\Tables\Delete.cshtml" />
     <Content Include="Views\Tables\Details.cshtml" />
@@ -304,16 +322,6 @@
     <Content Include="Views\FoodCategories\Details.cshtml" />
     <Content Include="Views\FoodCategories\Edit.cshtml" />
     <Content Include="Views\FoodCategories\Index.cshtml" />
-    <Content Include="Views\DrinkCategories\Create.cshtml" />
-    <Content Include="Views\DrinkCategories\Delete.cshtml" />
-    <Content Include="Views\DrinkCategories\Details.cshtml" />
-    <Content Include="Views\DrinkCategories\Edit.cshtml" />
-    <Content Include="Views\DrinkCategories\Index.cshtml" />
-    <Content Include="Views\Drinks\Create.cshtml" />
-    <Content Include="Views\Drinks\Delete.cshtml" />
-    <Content Include="Views\Drinks\Details.cshtml" />
-    <Content Include="Views\Drinks\Edit.cshtml" />
-    <Content Include="Views\Drinks\Index.cshtml" />
     <Content Include="Views\Foods\Create.cshtml" />
     <Content Include="Views\Foods\Delete.cshtml" />
     <Content Include="Views\Foods\Details.cshtml" />
@@ -324,22 +332,38 @@
     <Content Include="Views\Employees\Details.cshtml" />
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
-    <Content Include="Views\Accounts\Create.cshtml" />
-    <Content Include="Views\Accounts\Delete.cshtml" />
-    <Content Include="Views\Accounts\Details.cshtml" />
-    <Content Include="Views\Accounts\Edit.cshtml" />
-    <Content Include="Views\Accounts\Index.cshtml" />
+    <Content Include="Views\DrinkCategories\Create.cshtml" />
+    <Content Include="Views\DrinkCategories\Delete.cshtml" />
+    <Content Include="Views\DrinkCategories\Details.cshtml" />
+    <Content Include="Views\DrinkCategories\Edit.cshtml" />
+    <Content Include="Views\DrinkCategories\Index.cshtml" />
+    <Content Include="Views\Drinks\Create.cshtml" />
+    <Content Include="Views\Drinks\Delete.cshtml" />
+    <Content Include="Views\Drinks\Details.cshtml" />
+    <Content Include="Views\Drinks\Edit.cshtml" />
+    <Content Include="Views\Drinks\Index.cshtml" />
     <Content Include="Views\BookedTables\Create.cshtml" />
     <Content Include="Views\BookedTables\Delete.cshtml" />
     <Content Include="Views\BookedTables\Details.cshtml" />
     <Content Include="Views\BookedTables\Edit.cshtml" />
     <Content Include="Views\BookedTables\Index.cshtml" />
-    <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Bills\Create.cshtml" />
     <Content Include="Views\Bills\Delete.cshtml" />
     <Content Include="Views\Bills\Details.cshtml" />
     <Content Include="Views\Bills\Edit.cshtml" />
     <Content Include="Views\Bills\Index.cshtml" />
+    <Content Include="Views\Accounts\Create.cshtml" />
+    <Content Include="Views\Accounts\Delete.cshtml" />
+    <Content Include="Views\Accounts\Details.cshtml" />
+    <Content Include="Views\Accounts\Edit.cshtml" />
+    <Content Include="Views\Accounts\Index.cshtml" />
+    <Content Include="Views\BillInfoes\Create.cshtml" />
+    <Content Include="Views\BillInfoes\Delete.cshtml" />
+    <Content Include="Views\BillInfoes\Details.cshtml" />
+    <Content Include="Views\BillInfoes\Edit.cshtml" />
+    <Content Include="Views\BillInfoes\Index.cshtml" />
+    <Content Include="Views\Report\Index.cshtml" />
+    <Content Include="Views\BillInfoesExport\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -361,6 +385,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ReportViewer\Report1.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -5,20 +5,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Thông tin</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Thêm mới", "Create")
 </p>
-<table class="table" border="0" style="float:left">
+<table class="table">
     <tr>
         <th>
-            @Html.Label("Tên bàn")
-            @*@Html.DisplayNameFor(model => model.name)*@
+            @Html.DisplayNameFor(model => model.name)
         </th>
         <th>
-            @Html.Label("Trạng thái")
-            @*@Html.DisplayNameFor(model => model.status)*@
+            @Html.DisplayNameFor(model => model.status)
         </th>
         <th></th>
     </tr>
@@ -32,9 +30,9 @@
             @Html.DisplayFor(modelItem => item.status)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idTable }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idTable }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idTable })
+            @Html.ActionLink("Sửa", "Edit", new { id=item.idTable }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id=item.idTable }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.idTable })
         </td>
     </tr>
 }
